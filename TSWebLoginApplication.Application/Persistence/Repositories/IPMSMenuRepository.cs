@@ -1,0 +1,18 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using TSWebLoginApplication.Domain.Entities;
+
+namespace TSWebLoginApplication.Application.Persistence.Repositories
+{
+    public interface IPMSMenuRepository
+    {
+        public MST_USER_LOGIN GetActivityTime(string workstationName, string browserName, string randomValue);
+        public void DeleteLoginInfo(string uniqueId);
+        public void UpdateLastUsedTime(string uniqueId);
+        public List<MST_USER_LOGIN> Validate(string userName, string pass);
+        public void SaveData(string userName, string browser, string randomCode);
+    }
+}
