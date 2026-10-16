@@ -13,4 +13,8 @@
 /TSWebLoginApplication.Infrastructure/bin/
 /TSWebLoginApplication.Infrastructure/obj/
 /TSWebLoginApplication/.github/
+<<<<<<< HEAD
 /TSWebLoginApplication/.vs/
+=======
+/TSWebLoginApplication/.vs/
+>>>>>>> df3f77a7942923f21f400a1c2fd3972f382e60b8
