@@ -1,8 +1,5 @@
-TSWebLoginApplication.sln
-TSWebLoginApplication.slnLaunch.user
 /TSWebLoginApplication.API/bin/
 /TSWebLoginApplication.API/obj/
-/TSWebLoginApplication.API
 /TSWebLoginApplication.API.csproj.user
 /TSWebLoginApplication.API/Properties/
 /TSWebLoginApplication/bin/
@@ -15,3 +12,5 @@ TSWebLoginApplication.slnLaunch.user
 /TSWebLoginApplication.Domain/obj/
 /TSWebLoginApplication.Infrastructure/bin/
 /TSWebLoginApplication.Infrastructure/obj/
+/TSWebLoginApplication/.github/
+/TSWebLoginApplication/.vs/
