@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+    <PackageReference Include="UAParser" Version="3.1.47" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TSWebLoginApplication.Application\TSWebLoginApplication.Application.csproj" />
+    <ProjectReference Include="..\TSWebLoginApplication.Domain\TSWebLoginApplication.Domain.csproj" />
+    <ProjectReference Include="..\TSWebLoginApplication.Infrastructure\TSWebLoginApplication.Infrastructure.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="UAParser">
+      <HintPath>..\TSWebLoginApplication\bin\Debug\net6.0\UAParser.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>
