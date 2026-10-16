@@ -15,3 +15,5 @@ TSWebLoginApplication.slnLaunch.user
 /TSWebLoginApplication.Domain/obj/
 /TSWebLoginApplication.Infrastructure/bin/
 /TSWebLoginApplication.Infrastructure/obj/
+/TSWebLoginApplication/.github/
+/TSWebLoginApplication/.vs/
