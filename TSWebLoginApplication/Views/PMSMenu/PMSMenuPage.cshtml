@@ -1,0 +1,1700 @@
+﻿@using TSWebLoginApplication.Domain.Resources
+@inject LocalizationServices LocalizationServices
+@{
+    ViewData["Title"] = @LocalizationServices.GetLocalizedHtmlString("lbl_MenuPage");
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    string user = ViewBag.AuthorizedUser;
+     string aspxurl = ViewBag.aspxurl;
+      string coreurl = ViewBag.coreurl;
+   }
+<style type="text/css">
+       .Hidden {
+        display: none;
+    }
+</style>
+@section Scripts{
+     <script type="text/javascript" src="~/Static/js/jquery-2.1.1.min.js"></script>
+  <script type="text/javascript" src="~/Static/js/MenuScreen.js"></script>
+     <script type="text/javascript" src="~/Static/js/common.js"></script>
+  <script type="text/javascript" src="~/Static/js/CommonScript.js"></script>
+
+  <link href="~/Static/css/Common.css" rel="stylesheet" />
+  <link href="~/Static/css/MenuScreen.css" rel="stylesheet" />
+    <link href="~/css/masterStyles.css" rel="stylesheet" />
+
+  <script type="text/javascript" src="~/js/PMSMenuPage.js"></script>
+                  }
+
+                                               
+                  <body style="background-color:#f0f0f0;">
+<form id="form1">
+
+    
+    <br />
+        <br />
+        
+
+     <div id="menuWrapper" style="background-color:#f0f0f0;">
+          <table>
+                        <tr>
+                            <td align="left" style="border-style:none">
+                                <input type="button" style="color:#007bff;border-style:none;font-size:15px;margin-left:-8px;" value="@LocalizationServices.GetLocalizedHtmlString("lbl_MenuPage1")" ID="btnClose"
+                                  TabIndex="16" class="labelClass" />
+                               
+                            </td>
+                        </tr>
+                    </table>
+          <div id="menuHeader" style="padding-top:7px;text-align:left">
+              @*<span style="line-height: 30px; margin-left: 5px;">
+                <a ID="lnkSignOut" class="labelClass" style="color:white;width:90px;"
+                                OnClick="lnkSignOut_Click">
+                    <span ID="literalSignOut">@LocalizationServices.GetLocalizedHtmlString("lbl_SignOut")</span>
+                </a>
+            </span><span style="display: inline-block; width: 613px;"></span><span><label ID="lblUser" class="labelClass"></label></span>*@
+                    <label id="lblwelcome" class="labelClass" style="color:white;margin-left:5px;">@LocalizationServices.GetLocalizedHtmlString("lbl_workstation"):</label>
+                    <label id="lblusername" class="labelClass" style="color:white;"></label>
+        </div>
+            <!--
+                Note: Please follow the following convention for menu link Id and corresponding submenu div Id,
+                      or else the javascript menu switching won't work.
+
+                Menu Link Id : lnk<somename>
+                Corresponding Submenu Div Id : div<somename>
+
+                E.g.
+                Menu Link Id : lnkKakouiraiToTempAlloc
+                Corresponding Submenu Div Id : divKakouiraiToTempAlloc
+            -->
+            <table style="width: 100%;" cellspacing="0" cellpadding="0">
+                    <tbody>
+                        <tr>
+                        <td class="mainMenu" valign="top" style="border-bottom-style: inset; border-bottom-width: 3px; border-bottom-color: #C0C0C0; width: 250px;">
+                            <table class="MenuTable" border="1" cellpadding="1" cellspacing="1">
+                                <tbody><tr class="tdclass hidden">
+                                    <td class="style1 ">
+                                        <span id="lnkDemo" class="linkFormat">０．デモ用のデータの初期化</span></td></tr><tr class="tdclass ">
+                                    <td class="style1 selected">
+                                        <span id="lnkMaster" class="linkFormat linkDefault"> @LocalizationServices.GetLocalizedHtmlString("lbl_lnkMaster")</span></td></tr><tr class="tdclass hidden">
+                                    <td class="style1">
+                                        <span id="lnkKakouiraiToTempAlloc" class="linkFormat">@LocalizationServices.GetLocalizedHtmlString("lbl_lnkKakouraiiToTempAlloc")</span></td></tr><tr class="tdclass hidden">
+                                    <td class="style1">
+                                        <span id="lnkDeliveryToPO" class="linkFormat">@LocalizationServices.GetLocalizedHtmlString("lbl_lnkDeliveryToPo")</span></td></tr><tr class="tdclass hidden">
+                                    <td class="style1">
+                                                <span id="lnkNyukaToNifuda" class="linkFormat"> @LocalizationServices.GetLocalizedHtmlString("lbl_NyukaToNifuda")</span>
+                                            </td>
+                                        </tr>
+                                        <tr id="Tr1" class="tdclass ">
+	<td class="style1">
+                                        <span id="Label33" class="linkFormat"></span></td>
+</tr>
+<tr class="tdclass">
+                                    <td class="style1">
+                                        <span id="lnkSales" class="linkFormat">@LocalizationServices.GetLocalizedHtmlString("lbl_SalesMenu")</span></td></tr><tr class="tdclass">
+                                    <td class="style1">
+                                        <span id="lnkSalesManagement" class="linkFormat">@LocalizationServices.GetLocalizedHtmlString("lbl_SalesManagementMenu")</span></td></tr><tr class="tdclass">
+                                    <td class="style1"></td>
+                                </tr>
+                                <tr class="tdclass">
+                                    <td class="style1">
+                                                <span id="lnkMaterialManagement" class="linkFormat">@LocalizationServices.GetLocalizedHtmlString("lbl_MaterialManagementMenu")</span>
+                                            </td>
+                                        </tr>
+                                        <tr class="tdclass">
+                                    <td class="style1"></td>
+                                </tr>
+                                <tr class="tdclass">
+                                    <td class="style1">
+                                        <span id="lnkFactoryOffice" class="linkFormat">@LocalizationServices.GetLocalizedHtmlString("lbl_FactoryOfficeMenu")</span></td></tr><tr class="tdclass hidden">
+                                    <td class="style1">
+                                        <span id="lnkMaterial" class="linkFormat">@LocalizationServices.GetLocalizedHtmlString("lbl_MaterialMenu")</span></td></tr><tr class="tdclass">
+                                    <td class="style1">
+                                        <span id="lnkFactoryWorkshop" class="linkFormat">@LocalizationServices.GetLocalizedHtmlString("lbl_FactoryMenu")</span></td></tr><tr class="tdclass">
+                                    <td class="style1"></td>
+                                </tr>
+
+                    
+                                <tr class="tdclass ">
+                                    <td class="style1 selected">
+                                                <span id="lnkClouser" class="linkFormat linkDefault">締め処理 : Closure</span>
+                                            </td>
+                                        </tr>
+                                        <tr class="tdclass">
+                                    <td class="style1"></td>
+                                </tr>
+                                <tr class="tdclass hidden">
+                                    <td class="style1">
+                                        <span id="lnkFactoryShukka" class="linkFormat">@LocalizationServices.GetLocalizedHtmlString("lbl_lnkFactoryShukka")</span></td></tr><tr id="rwAdmin" class="tdclass ">
+	<td class="style1">
+                                        <span id="lnkAdmin" class="linkFormat">@LocalizationServices.GetLocalizedHtmlString("lbl_WorkStationManagement")</span></td>
+</tr>
+<tr id="rwUser" class="tdclass ">
+	<td class="style1">
+                                        <span id="lnkUser" class="linkFormat">@LocalizationServices.GetLocalizedHtmlString("lbl_UserManagement")</span></td>
+</tr>
+<tr class="tdclass">
+                                    <td class="style1"></td>
+                                </tr>
+                                <tr id="rwCNC" class="tdclass ">
+	<td class="style1">
+                                        <span id="lnkCNC" class="linkFormat">@LocalizationServices.GetLocalizedHtmlString("")</span></td>
+</tr>
+<tr class="tdclass hidden">
+                                    <td class="style1">
+                                        <span id="lnkHikinukiToProdCompletion" class="linkFormat">@LocalizationServices.GetLocalizedHtmlString("lbl_lnkHikinukiToProdCompletion")</span></td></tr><tr class="tdclass hidden">
+                                    <td class="style1">
+                                                <span id="lnkHOSOShukka" class="linkFormat">@LocalizationServices.GetLocalizedHtmlString("lbl_lnkHOSOShukka")</span>
+                                            </td>
+                                        </tr>
+                                        <tr class="tdclass hidden">
+                                    <td class="style1">
+                                                <span id="lnkFactoryTensoSalesShukka" class="linkFormat">@LocalizationServices.GetLocalizedHtmlString("lbl_lnkFactoryTensoSalesShukka")</span>
+                                            </td>
+                                        </tr>
+                                        <tr class="tdclass hidden">
+                                    <td class="style1">
+                                                <span id="lnkSalesAtoSalesBTensoSalesBShukka" class="linkFormat">@LocalizationServices.GetLocalizedHtmlString("lbl_lnkSalesAtoSalesBTensoSalesBShukka")</span>
+                                            </td>
+                                        </tr>
+                                        <tr class="tdclass hidden">
+                                    <td class="style1">
+                                        <span id="lnkFactoryDaiyouShukka" class="linkFormat">@LocalizationServices.GetLocalizedHtmlString("lbl_lnkFactoryDaiyouShukka")</span></td></tr><tr class="tdclass hidden">
+                                    <td class="style1">
+                                        <span id="lnkHOSODiayouShukka3" class="linkFormat">@LocalizationServices.GetLocalizedHtmlString("lbl_lnkHOSODiayouShukka3")</span></td></tr><tr class="tdclass hidden">
+                                    <td class="style1">
+                                        <span id="lnkFactoryBunkatsuShukka" class="linkFormat">@LocalizationServices.GetLocalizedHtmlString("lbl_lnkFactoryBunkatsuShukka")</span></td></tr><tr class="tdclass hidden">
+                                    <td class="style1">
+                                        <span id="lnkProductStockTaking" class="linkFormat">@LocalizationServices.GetLocalizedHtmlString("lbl_lnkProductStockTaking")</span></td></tr><tr class="tdclass hidden">
+                                    <td class="style1">
+                                        <span id="lnkProductStockInquiry" class="linkFormat">@LocalizationServices.GetLocalizedHtmlString("lbl_lnkProductStockInquiry")</span></td></tr><tr class="tdclass hidden">
+                                    <td class="style1">
+                                        <span id="lnkStockOrderToStockNyukaToHSKShukka" class="linkFormat">@LocalizationServices.GetLocalizedHtmlString("lbl_lnkStockOrderToStockNyukaToHSKShukka")</span></td></tr><tr class="tdclass hidden">
+                                    <td class="style1">
+                                        <span id="lnkStockOrderToStockNyukaToActualMatlSpec" class="linkFormat">@LocalizationServices.GetLocalizedHtmlString("lbl_lnkStockOrderToStockNyukaToActualMatlSpec")</span></td></tr><tr class="tdclass hidden">
+                                    <td class="style1">
+                                        <span id="lnkStockOrderToStockNyukaChoksuo" class="linkFormat">@LocalizationServices.GetLocalizedHtmlString("lbl_lnkStockOrderToStockNyukaChoksuo")</span></td></tr><tr class="tdclass hidden">
+                                    <td class="style1">
+                                        <span id="lnkSozaiSetsudan" class="linkFormat">@LocalizationServices.GetLocalizedHtmlString("lbl_lnkSozaiSetsudan")</span></td></tr><tr class="tdclass hidden">
+                                    <td class="style1">
+                                                <span id="lnkSehinSaikhako" class="linkFormat">@LocalizationServices.GetLocalizedHtmlString("lbl_lnkSehinSaikhako")</span>
+                                            </td>
+                                        </tr>
+                                        <tr class="tdclass hidden">
+                                    <td class="style1">
+                                        <span id="lnkRAndD" class="linkFormat">@LocalizationServices.GetLocalizedHtmlString("lbl_lnkRAndD")</span></td></tr><tr class="tdclass hidden">
+                                    <td class="style1">
+                                                <span id="lnkOther" class="linkFormat">@LocalizationServices.GetLocalizedHtmlString("lbl_lnkOther")</span>
+                                            </td>
+                                        </tr>
+                                        <tr class="tdclass hidden">
+                                    <td class="style1">
+                                        <span id="lnkTransaction" class="linkFormat">Transaction Screens</span></td></tr></tbody></table></td><!-- 
+                    Note : Please don't delete the "url" attribute of labels below.
+                           Ignore the VS editor validation error.
+                --><td valign="top" style="border-bottom-style: inset; border-bottom-width: 3px; width: 400px; border-bottom-color: #C0C0C0;border-right-style:none;" colspan="3">
+                            <div id="pnlSubMenu" class="subMenu">
+	
+                                <div id="divMaster" class="uppercontainer divDefault" style="position: relative; display: block; width: 100%; height: 27%; top: -1px; left: -1px;">
+                                    <table class="MenuTable" border="1" cellpadding="1" cellspacing="1" style="position: relative; width: 100%; height: 22%; top: 0px; left: 0px;">
+                                        <tbody><tr class="tdclass">
+                                            <td class="style2">
+                                                        <span id="lblCountryEntry" class="linkFormat" data-url="Masters/M_CountryEntry.aspx" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_CountryMaster").ToString().Replace("</br>", "<br>"))</span>
+                                                    </td>
+                                                </tr>
+                                                <tr class="tdclass">
+                                            <td class="style2">
+                                                <span id="lblcurrencyMaster" class="linkFormat" data-url="Masters/M_CurrencyEntry.aspx" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_CurrencyMaster").ToString().Replace("</br>", "<br>"))</span></td></tr><tr class="tdclass">
+                                            <td class="style2">
+                                                        <span id="lblCustomerTypeEntry" class="linkFormat" data-url="Masters/M_CustomerTypeEntry.aspx" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_CustomerTypeMaster").ToString().Replace("</br>", "<br>"))</span>
+                                                    </td>
+                                                </tr>
+                                                <tr class="tdclass">
+                                            <td class="style3">&nbsp; </td></tr><tr class="tdclass">
+                                            <td class="style2">
+                                                <span id="lblCustomerEntry" class="linkFormat" data-url="Masters/M_CustomerEntry.aspx" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_CustomerMaster").ToString().Replace("</br>", "<br>"))</span></td></tr><tr class="tdclass">
+                                            <td class="style2">
+                                                <span id="lblReceiverEntry" class="linkFormat" data-url="Masters/M_ReceiverEntry.aspx" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_ReceiverMaster").ToString().Replace("</br>", "<br>"))</span></td></tr><tr class="tdclass">
+                                        <td class="style3">
+                                            <span id="lblSupplierEntry" class="linkFormat" data-url="Masters/M_SupplierEntry.aspx" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_SupplierMaster").ToString().Replace("</br>", "<br>"))</span></td></tr><tr class="tdclass">
+                                            <td class="style2">
+                                                <span id="lblBankEntry" class="linkFormat" data-url="Masters/M_BankEntry.aspx" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_BankMaster").ToString().Replace("</br>", "<br>"))</span></td></tr><tr class="tdclass">
+                                            <td class="style3">&nbsp; </td></tr><tr class="tdclass">
+                                            <td class="style3">
+                                                <span id="lblLocationEntry" class="linkFormat" data-url="Masters/M_LocationEntry.aspx" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_LocationMaster").ToString().Replace("</br>", "<br>"))</span></td></tr><tr class="tdclass">
+                                            <td class="style3">&nbsp; </td></tr><tr class="tdclass">
+                                            <td class="style3">
+                                                <span id="lblDepartmentEntry" class="linkFormat" data-url="Masters/M_DepartmentEntry.aspx" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_DepartmentMaster").ToString().Replace("</br>", "<br>"))</span></td></tr><tr class="tdclass">
+                                            <td class="style3">
+                                                <span id="lblDesignationEntry" class="linkFormat" data-url="Masters/M_DesignationEntry.aspx" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_DesignationMaster").ToString().Replace("</br>", "<br>"))</span></td></tr><tr class="tdclass">
+                                            <td class="style3">
+                                                        <span id="lblEmployeeEntry" class="linkFormat" data-url="Masters/M_EmployeeEntry.aspx" data-title="aspx">
+                                                            @Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_EmployeeMaster").ToString().Replace("</br>", "<br>"))</span></td></tr><tr class="tdclass">
+                                            <td class="style3">
+                                                        <span id="lblDepartmentGroupEntry" class="linkFormat" data-url="Masters/M_DepartmentGroupEntry.aspx" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_DepartmentGroupMaster").ToString().Replace("</br>", "<br>"))</span>
+                                                    </td>
+                                                </tr>
+                                                <tr class="tdclass">
+                                        <td class="style3">&nbsp; </td></tr><tr class="tdclass">
+                                            <td class="style3">
+                                                <span id="lblMakerEntry" class="linkFormat" data-url="Masters/M_MakerEntry.aspx" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_MakerMaster").ToString().Replace("</br>", "<br>"))</span></td></tr><tr class="tdclass">
+                                            <td class="style3">
+                                                        <span id="lblMukesakiEntry" class="linkFormat" data-url="Masters/M_MukesakiEntry.aspx" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_MukesakiMaster").ToString().Replace("</br>", "<br>"))</span>
+                                                    </td>
+                                                </tr>
+                                                <tr class="tdclass">
+                                            <td class="style3">
+                                                <span id="lblFotouEntry" class="linkFormat" data-url="Masters/M_FotouEntry.aspx" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_ShipyardandWarehouseMaster").ToString().Replace("</br>", "<br>"))</span></td></tr><tr class="tdclass">
+                                            <td class="style3">
+                                                        <span id="lblReceivingPlaceEntry" class="linkFormat" data-url="Masters/M_ReceivingPlaceEntry.aspx" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_ReceivingPlaceMaster").ToString().Replace("</br>", "<br>"))</span>
+                                                    </td>
+                                                </tr>
+                                                <tr class="tdclass">
+                                        <td class="style3">&nbsp; </td></tr><tr class="tdclass">
+                                            <td class="style2">
+                                                <span id="lblMochikomisakiEntry" class="linkFormat" data-url="Masters/M_MochikomisakiEntry.aspx" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_MochikomisakiMaster").ToString().Replace("</br>", "<br>"))</span></td></tr><tr class="tdclass">
+                                            <td class="style3">&nbsp; </td></tr><tr class="tdclass">
+                                            <td class="style3">
+                                                <span id="lblMaterialNameInternalEntry" class="linkFormat" data-url="Masters/M_MaterialNameInternalEntry.aspx" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_InternalNameMaster").ToString().Replace("</br>", "<br>"))</span></td></tr><tr class="tdclass">
+                                            <td class="style3">&nbsp; </td></tr><tr class="tdclass">
+                                            <td class="style3">
+                                                        <span id="lblConditionEntry" class="linkFormat" data-url="Masters/M_ConditionEntry.aspx" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_ConditionMaster").ToString().Replace("</br>", "<br>"))</span>
+                                                    </td>
+                                                </tr>
+                                                <tr class="tdclass">
+                                            <td class="style3">&nbsp; </td></tr><tr class="tdclass">
+                                            <td class="style3">
+                                                <span id="lblProductTypeEntry" class="linkFormat" data-url="Masters/M_ProductTypeEntry.aspx" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_ProductTypeMaster").ToString().Replace("</br>", "<br>"))</span></td></tr><tr class="tdclass">
+                                            <td class="style3">
+                                                <span id="lblMaterialTypeEntry" class="linkFormat" data-url="Masters/M_MaterialTypeEntry.aspx" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_SteelTypeMaster").ToString().Replace("</br>", "<br>"))</span></td></tr><tr class="tdclass">
+                                            <td class="style3">
+                                                        <span id="lblProductEntry" class="linkFormat" data-url="Masters/M_ProductMaster.aspx" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_ProductMaster").ToString().Replace("</br>", "<br>"))</span>
+                                                    </td>
+                                                </tr>
+                                                <tr class="tdclass">
+                                            <td class="style3">
+                                                        <span id="lblMachineGroupEntry" class="linkFormat" data-url="Masters/M_MachineGroupEntry.aspx" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_MachineGroupMaster").ToString().Replace("</br>", "<br>"))</span>
+                                                    </td>
+                                                </tr>
+                                                <tr class="tdclass">
+                                            <td class="style3">
+                                                <span id="lblMachineEntry" class="linkFormat" data-url="Masters/M_MachineEntry.aspx" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_MachineMaster").ToString().Replace("</br>", "<br>"))</span></td></tr><tr class="tdclass">
+                                            <td class="style3">
+                                                <span id="lblProcessEntry" class="linkFormat" data-url="Masters/M_ProcessEntry.aspx" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_ProcessMaster").ToString().Replace("</br>", "<br>"))</span></td></tr><tr class="tdclass">
+                                            <td class="style3">
+                                                <span id="lblProcessTemplateEntry" class="linkFormat" data-url="Masters/M_ProcessTemplateEntry.aspx" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_ProcessTemplateMaster").ToString().Replace("</br>", "<br>"))</span></td></tr><tr class="tdclass">
+                                            <td class="style3">
+                                                <span id="lblPackingEntry" class="linkFormat" data-url="Masters/M_PackingEntry.aspx" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_PackingMaster").ToString().Replace("</br>", "<br>"))</span></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                        <span id="lblChemicalCompositionMaster" class="linkFormat" data-url="Masters/M_ChemicalCompositionEntry.aspx" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_ChemicalCompositionMaster").ToString().Replace("</br>", "<br>"))</span>
+                                                    </td>
+                                                </tr>
+                                                <tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="lblProcessDefectMaster" class="linkFormat" data-url="Masters/M_ProcessDefectEntry.aspx" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_ProcessDefectMaster").ToString().Replace("</br>", "<br>"))</span></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="lblJISTestMaster" class="linkFormat" data-url="Masters/M_JISTest.aspx" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_JISTestMaster").ToString().Replace("</br>", "<br>"))</span></td></tr><tr class="tdclass">
+                                        <td class="style3">
+                                                        <span id="lblMaterialNameMakerEntry" class="linkFormat" data-url="Masters/M_MaterialNameMakerEntry.aspx" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_MaterialNameMakerMaster").ToString().Replace("</br>", "<br>"))</span>
+                                                    </td>
+                                                </tr>
+                                                <tr class="tdclass">
+                                            <td class="style3">
+                                                        <span id="lblMaterialEntry" class="linkFormat" data-url="Masters/M_MaterialEntry.aspx" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_MaterialMaster").ToString().Replace("</br>", "<br>"))</span>
+                                                    </td>
+                                                </tr>
+                                                <tr class="tdclass">
+                                            <td class="style3">&nbsp; </td></tr><tr class="tdclass">
+                                        <td class="style3">
+                                                        <span id="lbldispatchdefectlist" class="linkFormat" data-url="Masters/M_ShukkaDefectEntry.aspx" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_DispatchDefectListMaster").ToString().Replace("</br>", "<br>"))</span>
+                                                    </td>
+                                                </tr>
+                                                <tr class="tdclass">
+                                            <td class="style3">&nbsp; </td></tr><tr class="tdclass">
+                                            <td class="style3">
+                                                        <span id="lblConfigurationEntry" class="linkFormat" data-url="Masters/M_ConfigurationEntry.aspx" data-title="aspx">
+                                                            @Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_ConfigurationMaster").ToString().Replace("</br>", "<br>"))</span>
+                                                    </td>
+                                                </tr>
+                                                <tr class="tdclass">
+                                            <td class="style3">&nbsp; </td></tr></tbody></table></div><div id="divKakouiraiToTempAlloc" class="uppercontainer" style="position: relative; display: none; width: 100%; height: 5%; top: 0px; left: 0px;">
+                                    <table class="MenuTable" border="1" cellpadding="1" cellspacing="1" style="position: relative; width: 100%; height: 22%; top: 0px; left: 0px;">
+                                        <tbody><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="lblKakouraiiEntry" class="linkFormat" data-url="Transaction/KhakoiraiEntry.aspx" data-title="aspx">加工依頼申込 (登録・変更・取消)<br/>Kakoirai EntryScreen</span></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="lblKakouraiiReport" class="linkFormat" data-url="Transaction/PrintReportScreen.aspx?ScreenName=kakouiraiData" data-title="aspx">加工依頼書の印刷画面<br/>Kakourai Report</span></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="lblPrintScreen" class="linkFormat" data-url="Transaction/PrintReportScreen.aspx?ScreenName=MatlDept&amp;Depart=sales" data-title="aspx">加工依頼一覧表の印刷画面<br/>Material Department Kakourai Report</span></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="lblPurchaseOrder" class="linkFormat" data-url="Transaction/PurchaseOrderEntry.aspx" data-title="aspx">素材発注（追加・変更・取消・分割）<br/>PurchaseOrderScreen</span></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="lblKoubanReply" class="linkFormat" data-url="Transaction/KoubanEntry.aspx" data-title="aspx">工番回答（重量納期変更・分割）<br/>KoubanReplyScreen</span></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="lnkNyukoEntry" class="linkFormat" data-url="Transaction/FutouNyukoEntry.aspx" data-title="aspx">埠頭・メーカー倉庫　入庫<br/>FutouNyukoEntryScreen</span></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="lnkNyukoEditDelete" class="linkFormat" data-url="Transaction/FutouNyukoEditDelete.aspx" data-title="aspx">埠頭・メーカー倉庫　入庫 修正・削除<br/>FutouNyukoEditDelete</span></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="lblTempAllocation" class="linkFormat" data-url="Transaction/TempAllocation.aspx" data-title="aspx">仮引当<br/>Temp Allocation</span></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                        <span id="lblSpotMaterialNyuko" class="linkFormat" data-url="Transaction/SpotMaterialNyukoEntryEditDeleteScreen.aspx" data-title="aspx">スポット材入庫　登録・修正・削除<br />Spot Material Nyuko Entry Screen</span>
+                                                    </td>
+                                                </tr>
+                                                <tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="lblSpotMaterialNyukoList" class="linkFormat" data-url="Transaction/SpotMaterialNyukoListScreen.aspx" data-title="aspx">スポット材入庫　登録・修正・削除<br/>Spot Material Nyuko List Screen</span></td></tr></tbody></table></div><div id="divDeliveryToPO" class="uppercontainer" style="position: relative; display: none; width: 100%; height: 5%; top: 0px; left: 0px;">
+                                    <table class="MenuTable" border="1" cellpadding="1" cellspacing="1" style="position: relative; width: 100%; height: 22%; top: 0px; left: 0px;">
+                                        <tbody><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="lblDeliveryConfermationScreen" class="linkFormat" data-url="Transaction/DeliveryConfirmationScreen.aspx" data-title="aspx">納期連絡　登録<br>Delivery Confirmation Screen</span></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="lblDeliveryPrintReportScreen" class="linkFormat" data-url="Transaction/PrintReportScreen.aspx?ScreenName=DeliveryDate" data-title="aspx">納期連絡票の印刷画面<br>DeliveryPrintReportScreen</span></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="lblDeliveryDatePrintScreen" class="linkFormat" data-url="Transaction/DeliveryDatePrintScreen.aspx" data-title="aspx">納期連絡表一括印刷 (資材用)<br>DeliveryDatePrintScreen</span></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="lblMaterialDeptPrintReportScreen" class="linkFormat" data-url="Transaction/PrintReportScreen.aspx?ScreenName=MatlDept&amp;Depart=matl" data-title="aspx">加工依頼一覧表の印刷画面<br>MatlDeptKakouiraiReportScreen</span></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="lblHoldPrintScreen" class="linkFormat" data-url="Transaction/PrintScreen.aspx?ScreenName=PendingProductionOrderList" data-title="aspx"> 生産指令保留一覧の印刷<br>Hold Kakouirai Report</span></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="lblProductionReportPrintScreen1" class="linkFormat" data-url="Report/ProductionReportPrintScreen.aspx" data-title="aspx">生産指令書（取入明細書作成用）<br>ProductionPrintReportScreen</span></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="lblRequestedMaterialIntake" class="linkFormat" data-url="Transaction/RequestedMaterialIntake.aspx" data-title="aspx">素材取入明細書 (登録・変更・取消）<br>RequestedMaterialIntake</span></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="lblInternalPrintReportScreen" class="linkFormat" data-url="Transaction/PrintReportScreen.aspx?ScreenName=InternalReport" data-title="aspx">素材取入明細書 (社内用)の印刷画面<br>Int-Ext PrintReportScreen</span></td></tr></tbody></table></div><div id="divNyukaToNifuda" class="uppercontainer" style="position: relative; display: none; width: 100%; height: 5%; top: 0px; left: 0px;">
+                                    <table class="MenuTable" border="1" cellpadding="1" cellspacing="1" style="position: relative; width: 100%; height: 22%; top: 0px; left: 0px;">
+                                        <tbody><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="lblJizaiiNyukaTemplate" class="linkFormat" data-url="Transaction/JizaiiNyukaEntry.aspx" data-title="aspx">林精鋼　入荷（自材）<br>JizaiiNyuka</span></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="lblJizaiiNyukaEditDelete" class="linkFormat" data-url="Transaction/JizaiiNyukaEditDelete.aspx" data-title="aspx">林精鋼　入荷（変更・取消）<br>JizaiiNyukaEditDelete</span></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="lblActAllocScreen" class="linkFormat" data-url="Transaction/ActAllocScreen.aspx" data-title="aspx">実引当<br>ActAllocScreen</span></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="lblActAllocBatch" class="linkFormat" data-url="Transaction/ActAllocBatch.aspx" data-title="aspx">実引当<br>ActAllocBatch</span></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="lblNyukaNifudaProcessPlanLocation" class="linkFormat" data-url="Transaction/PrintReportScreen.aspx?ScreenName=ProcessPlanReport" data-title="aspx">製造指示書の発行<br>Process Plan Generation</span></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="lblFactoryProductionPlan" class="linkFormat" data-url="Transaction/FactoryProductionPlan.aspx" data-title="aspx">製造予定表<br>FactoryProductionPlan</span></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="lblNyukaNifudaPrintScreen" class="linkFormat" data-url="Transaction/NifudaPrintScreen.aspx" data-title="aspx">製品荷札の発行<br>NifudaGenerationScreen</span></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="lblHikinukiEntryScreen" class="linkFormat" data-url="Transaction/HikinukiEntryScreen.aspx" data-title="aspx"> HikinukiEntryScreen</span></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="Label34" class="linkFormat" data-url="Transaction/FinalInspectionEntry.aspx" data-title="aspx"> FinalInspectionEntryScreenI</span></td></tr></tbody></table></div><div id="divPMS" class="uppercontainer" style="position: relative; display: none; width: 100%; height: 5%; top: 0px; left: 0px;">
+                                    <table class="MenuTable" border="1" cellpadding="1" cellspacing="1" style="position: relative; width: 100%; height: 22%; top: 0px; left: 0px;">
+                                        <tbody><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="lblHikinuki" class="linkFormat" data-url="Transaction/HikinukiEntryScreen.aspx" data-title="aspx">工程　引抜　登録<br>Hikinuki Entry Screen</span></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="lblEC" class="linkFormat" data-url="Transaction/ECInspectionEntryScreen.aspx" data-title="aspx">工程　ＥＣ　登録<br>EC Inspection Screen</span></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="lblFinalInspection" class="linkFormat" data-url="HandyTerminal/MenuScreen.aspx" data-title="aspx">最終検査登録<br>Final Inspection Screen I</span></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="lblFinalInspectionIIEntry" class="linkFormat" data-url="Transaction/FinalInspectionIIEntry.aspx" data-title="aspx"> 最終検査（機械的性質判定）登録<br>Final Inspection Screen II</span></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="lblProcessPlanCompletion" class="linkFormat" data-url="Transaction/ProdOrderCompletionScreen.aspx" data-title="aspx">製造指示書消込（生産完了）<br>Process Plan Completion Screen</span></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="lblKoubanCompletionScreen" class="linkFormat" data-url="Transaction/KoubanCompletionScreen.aspx" data-title="aspx">工番消込（自材．直送材）<br>Kouban Completion Screen</span></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="lblProcessPlanCancellation" class="linkFormat" data-url="Transaction/ProcessPlanReportDelete.aspx" data-title="aspx">製造指示書消込（生産取消）<br>Process Plan Cancellation Screen</span></td></tr></tbody></table></div><div id="divRAndD" class="uppercontainer" style="position: relative; display: none; width: 100%; height: 5%; top: 0px; left: 0px;">
+                                    <table class="MenuTable" border="1" cellpadding="1" cellspacing="1" style="position: relative; width: 100%; height: 22%; top: 0px; left: 0px;">
+                                        <tbody><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="lblMergeColumns" class="linkFormat" data-url="RAndDTasks/ShirehinShukkaIssueMergeColumns.aspx" data-title="aspx">納品書発行画面<br>Shirehin Shukka Issue Merge Columns</span></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="lblProcessPlan" class="linkFormat" data-url="Transaction/ProcessPlalnScreen.aspx" data-title="aspx">製 造 指　示 書<br>ProcessPlan</span></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="lblRnD" class="linkFormat" data-url="RAndDTasks/Main.aspx" data-title="aspx">Session TimeOut</span></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="lblSearchCombo" class="linkFormat" data-url="RAndDTasks/SearchComboControl.aspx" data-title="aspx">Search Control Solution</span></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="lblScannerEvent" class="linkFormat" data-url="RAndDTasks/ScannerEventHandler.aspx" data-title="aspx">Set Focus to Next Control After Scanning</span></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="lblPurchaseOrderTab" class="linkFormat" data-url="Transaction/PurchaseOrderTab.aspx" data-title="aspx">素材発注（追加・変更・取消・分割）<br>PurchaseOrder</span></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="lblQRCode" class="linkFormat" url="">QR Code (Multiple String with Different Attributes )(Check in Handy Terminal)</span></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="lblSearchScreen" class="linkFormat" data-url="Transaction/SearchScreen.aspx" data-title="aspx">Search Pop Up</span></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="lblSystemInfo" class="linkFormat" data-url="RAndDTasks/SystemInfo.aspx" data-title="aspx">Sytem Information</span></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="lblGridViewFixedHeader" class="linkFormat" data-url="RAndDTasks/GridViewFixedHeader.aspx" data-title="aspx">Grid View Fixed Header</span></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="lblBarcodeReader" class="linkFormat" data-url="RAndDTasks/BarcodeReader.aspx" data-title="aspx">Barcode Display</span></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="lblProcessWindow" class="linkFormat" data-url="RAndDTasks/ProcessWindow.aspx" data-title="aspx">Process Window 1</span></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="lblInProcessPage" class="linkFormat" data-url="RAndDTasks/InProcessPage.aspx" data-title="aspx">Process Window 2</span></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="lblMachineLogin" class="linkFormat" data-url="RAndDTasks/MachineLogin.aspx" data-title="aspx">ログイン 画面<br>Login</span></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="lblCustomPrintExportPdf" class="linkFormat" data-url="RAndDTasks/CustomPrintExportPdf.aspx" data-title="aspx">風習印画ボタン兼輸出pdf 画面<br>CustomPrintExoprtToPdf</span></td></tr></tbody></table></div><div id="divFactoryBunkatsuShukka" class="uppercontainer" style="position: relative; display: none; width: 100%; height: 5%; top: 0px; left: 0px;">
+                                    <table class="MenuTable" border="1" cellpadding="1" cellspacing="1" style="position: relative; width: 100%; height: 22%; top: 0px; left: 0px;">
+                                        <tbody><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <a id="lnkFlow1PPT" class="linkFormat pptLink" data-url="javascript:__doPostBack('lnkFlow1PPT','')" data-title="aspx">パワーポイント資料ダウンロード<br>Download Powerpoint Presentation</a></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="lblProductStockScreen" class="linkFormat" data-url="Transaction/ProductStockScreen.aspx" data-title="aspx">製品問合せ<br>Product Stock Screen</span></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="lblShukkaScreen" class="linkFormat" data-url="Transaction/ShukkaScreen.aspx" data-title="aspx">出荷 画面<br>Shukka Screen</span></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="lblShukkaScreenReport" class="linkFormat" data-url="Report/ShukkaScreenReport.aspx" data-title="aspx">出荷・転送依頼カード<br>Shukka Screen Report</span></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="lblNifudaDivisionScreen" class="linkFormat" data-url="Transaction/NifudaDivisionScreen.aspx" data-title="aspx">荷札発行　荷札分割　画面<br>Nifuda Division Screen</span></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="lblHandyTerminalScreen" class="linkFormat" url="">製品荷札分割　（ハンディーターミナル）<br>HandyTerminalScreen</span></td></tr></tbody></table></div><div id="divFactoryShukka" class="uppercontainer" style="position: relative; display: none; width: 100%; height: 5%; top: 0px; left: 0px;">
+                                    <table class="MenuTable" border="1" cellpadding="1" cellspacing="1" style="position: relative; width: 100%; height: 22%; top: 0px; left: 0px;">
+                                        <tbody><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <a id="lnkFlow2PPT" class="linkFormat pptLink" data-url="javascript:__doPostBack('lnkFlow2PPT','')" data-title="aspx">パワーポイント資料ダウンロード : Download Powerpoint Presentation</a></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="lblProductStockScreen1" class="linkFormat" data-url="Transaction/ProductStockScreen.aspx" data-title="aspx">製品問合せ<br>Product Stock Screen</span></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="lblShukkaScreen1" class="linkFormat" data-url="Transaction/ShukkaTensouInstructionCardScreen.aspx" data-title="aspx">出荷 画面<br>Shukka Instruction card(Screen)</span></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="lblShukkaScreenReport1" class="linkFormat" data-url="Transaction/SalesInvoiceReprintScreen.aspx?ScreenName=ShukkaCard" data-title="aspx">出荷・転送依頼カード<br>Shukka Instruction card(Report)</span></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="lblLocationWiseReport1" class="linkFormat" data-url="Report/R_ShukkaTensouInstructionList.aspx?ScreenName=ShukkaTenso" data-title="aspx">出荷・転送依頼一覧<br>Shukka/Tenso Report</span></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="lblNifudaHandyTerminalScreen" class="linkFormat" data-url="HandyTerminal/MenuScreen.aspx" data-title="aspx">製品出荷　工場用（ハンディーターミナル）<br>Factory Shukka( HandyTerminal)</span></td></tr><tr class="tdclass">
+                                        <td style="width: 303px">
+                                            <span id="lblShukkaDelivery" class="linkFormat" data-url="Report/ShukkaDelivery.aspx" data-title="aspx">納品書<br>Invoice(Customer,Acknowledgement,Transport)</span></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="lblLocationWiseReport2" class="linkFormat" data-url="Report/SalesShukkaDelivery.aspx" data-title="aspx">納品書売上伝票<br>Invoice(Sales)</span></td></tr></tbody></table></div><div id="divHOSODiayouShukka3" class="uppercontainer" style="position: relative; display: none; width: 100%; height: 5%; top: 0px; left: 0px;">
+                                    <table class="MenuTable" border="1" cellpadding="1" cellspacing="1" style="position: relative; width: 100%; height: 22%; top: 0px; left: 0px;">
+                                        <tbody><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <a id="lnkFlow3PPT" class="linkFormat pptLink" data-url="javascript:__doPostBack('lnkFlow3PPT','')" data-title="aspx">パワーポイント資料ダウンロード<br>Download Powerpoint Presentation</a></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="lblProductStockScreen2" class="linkFormat" data-url="Transaction/ProductStockScreen.aspx" data-title="aspx">製品問合せ<br>Product Stock Screen</span></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="lblShukkaScreen2" class="linkFormat" data-url="Transaction/ShukkaScreen.aspx" data-title="aspx">出荷 画面<br>Shukka Screen</span></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="lblShukkaScreenReport2" class="linkFormat" data-url="Report/ShukkaScreenReport.aspx" data-title="aspx">出荷・転送依頼カード<br>Shukka Screen Report</span></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="lblLocationWiseReport3" class="linkFormat" data-url="Report/LocationWiseReport.aspx?ScreenName=ShukkaTenso" data-title="aspx">出荷・転送依頼一覧<br>Shukka Report</span></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="lblHandyTerminalScreen2" class="linkFormat" url="">製品荷札分割（ハンディーターミナル）<br>HandyTerminalScreen</span></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="lblShukaIssueScreen2" class="linkFormat" data-url="Transaction/ShukaIssueScreen.aspx" data-title="aspx">納品書発行画面<br>Shukka Issue Screen</span></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="lblDiayouScreen2" class="linkFormat" data-url="Transaction/DiayouScreen.aspx" data-title="aspx">出荷荷札内容変更登録　画面<br>Daiyou Nifuda Screen</span></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="lblShukkaDelivery2" class="linkFormat" data-url="Report/ShukkaDelivery.aspx" data-title="aspx">売上伝票<br>Shukka Delivery Report</span></td></tr></tbody></table></div><div id="divlnkNewFlow4_Click" class="uppercontainer" style="position: relative; display: none; width: 100%; height: 5%; top: 0px; left: 0px;">
+                                    <table class="MenuTable" border="1" cellpadding="1" cellspacing="1" style="position: relative; width: 100%; height: 22%; top: 0px; left: 0px;">
+                                        <tbody><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <a id="lnkFlow4PPT" class="linkFormat pptLink" data-url="javascript:__doPostBack('lnkFlow4PPT','')" data-title="aspx">パワーポイント資料ダウンロード<br>Download Powerpoint Presentation</a></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="lblProductStockScreen3" class="linkFormat" data-url="Transaction/ProductStockScreen.aspx" data-title="aspx">製品問合せ<br>Product Stock Screen</span></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="lblShukkaScreen3" class="linkFormat" data-url="Transaction/ShukkaScreen.aspx" data-title="aspx">出荷 画面<br>Shukka Screen</span></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="lblShukkaScreenReport3" class="linkFormat" data-url="Report/ShukkaScreenReport.aspx" data-title="aspx">出荷・転送依頼カード<br>Shukka Screen Report</span></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="lblShukkaLocationWiseReport" class="linkFormat" data-url="Report/LocationWiseReport.aspx?ScreenName=ShukkaTenso" data-title="aspx">出荷・転送依頼一覧<br>Shukka Report</span></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="lblShukkaHT" class="linkFormat" url="">製品転送開始工場用（ハンディーターミナル）<br>EntryScreen By HT</span></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="lblTensoReport" class="linkFormat" data-url="Report/TensoReport.aspx" data-title="aspx">転送開始一覧表　（転送開始）<br>TensoReport( transport person)</span></td></tr></tbody></table></div><div id="divHOSOShukka" class="uppercontainer" style="position: relative; display: none; width: 100%; height: 5%; top: 0px; left: 0px;">
+                                    <table class="MenuTable" border="1" cellpadding="1" cellspacing="1" style="position: relative; width: 100%; height: 22%; top: 0px; left: 0px;">
+                                        <tbody><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <a id="lnkFlow5PPT" class="linkFormat pptLink" data-url="javascript:__doPostBack('lnkFlow5PPT','')" data-title="aspx">パワーポイント資料ダウンロード<br>Download Powerpoint Presentation</a></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="lblProductStockScreen4" class="linkFormat" data-url="Transaction/ProductStockScreen.aspx" data-title="aspx">製品問合せ<br>Product Stock Screen</span></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="lblShukkaScreen4" class="linkFormat" data-url="Transaction/ShukkaScreen.aspx" data-title="aspx">出荷 画面<br>Shukka Screen</span></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="lblShukkaScreenReport4" class="linkFormat" data-url="Report/ShukkaScreenReport.aspx" data-title="aspx">出荷・転送依頼カード<br>Shukka Screen Report</span></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="lblTensoInstructionNifudaScreen" class="linkFormat" data-url="Transaction/TensoInstructionNifudaScreen.aspx" data-title="aspx">荷指示荷札の発行<br>Instruction Nifuda Screen</span></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="lblTensoHT" class="linkFormat" url="">製品転送開始　本社・営業所（ハンディーターミナル）: HandyTerminalScreen</span></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="lblThabaCompletionScreen" class="linkFormat" data-url="Transaction/ThabaCompletionScreen.aspx" data-title="aspx">荷札発行　消込<br>Thaba Completion Screen</span></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="lblShukaIssueScreen4" class="linkFormat" data-url="Transaction/ShukaIssueScreen.aspx" data-title="aspx">納品書発行画面<br>Shukka Issue Screen</span></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="lblShukkaDelivery4" class="linkFormat" data-url="Report/ShukkaDelivery.aspx" data-title="aspx">売上伝票<br>Shukka Delivery Report</span></td></tr></tbody></table></div><div id="divSalesAtoSalesBTensoSalesBShukka" class="uppercontainer" style="position: relative; display: none; width: 100%; height: 5%; top: 0px; left: 0px;">
+                                    <table class="MenuTable" border="1" cellpadding="1" cellspacing="1" style="position: relative; width: 100%; height: 22%; top: 0px; left: 0px;">
+                                        <tbody><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <a id="lnkFlow6PPT" class="linkFormat pptLink" data-url="javascript:__doPostBack('lnkFlow6PPT','')" data-title="aspx">パワーポイント資料ダウンロード<br>Download Powerpoint Presentation</a></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="lblProductStockScreen5" class="linkFormat" data-url="Transaction/ProductStockScreen.aspx" data-title="aspx">製品問合せ<br>Product Stock Screen</span></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="lblShukkaScreen5" class="linkFormat" data-url="Transaction/ShukkaScreen.aspx" data-title="aspx">出荷 画面<br>Shukka Screen</span></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="lblShukkaScreenReport5" class="linkFormat" data-url="Report/ShukkaScreenReport.aspx" data-title="aspx">出荷・転送依頼カード<br>Shukka Screen Report</span></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="lblTensoInstructionNifuda5" class="linkFormat" data-url="Report/TensoInstructionNifuda.aspx" data-title="aspx">転送指示荷札（転送先では製品荷札になります）<br>Tenso Instruction Nifuda</span></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="lblHT5" class="linkFormat" url="">製品転送開始本社・営業所（ハンディーターミナル）<br>HandyTerminalScreen</span></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="lblTensoReport5" class="linkFormat" data-url="Report/TensoReport.aspx" data-title="aspx">転送開始一覧表　（転送開始）<br>TensoReport( transport person)</span></td></tr></tbody></table></div><div id="NewFlow7Div" class="uppercontainer" style="position: relative; display: none; width: 100%; height: 5%; top: 0px; left: 0px;">
+                                    <table class="MenuTable" border="1" cellpadding="1" cellspacing="1" style="position: relative; width: 100%; height: 22%; top: 0px; left: 0px;">
+                                        <tbody><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <a id="lnkFlow7PPT" class="linkFormat pptLink" data-url="javascript:__doPostBack('lnkFlow7PPT','')" data-title="aspx">パワーポイント資料ダウンロード<br>Download Powerpoint Presentation</a></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="lblTensoTransAcceptanceReport" class="linkFormat" data-url="Report/TensoTransAcceptanceReport.aspx" data-title="aspx">転送受入一覧表　（転送完了）<br>Tenso TransAcceptance Report</span></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="lblHT6" class="linkFormat" url="">製品転送受入本社・営業所・工場 （ハンディーターミナル）<br>HandyTerminalScreen (Quantity Confirmation)</span></td></tr></tbody></table></div><div id="divProductStockTaking" class="uppercontainer" style="position: relative; display: none; width: 100%; height: 5%; top: 0px; left: 0px;">
+                                    <table class="MenuTable" border="1" cellpadding="1" cellspacing="1" style="position: relative; width: 100%; height: 22%; top: 0px; left: 0px;">
+                                        <tbody><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <a id="lnlFlow8PPT" class="linkFormat pptLink" data-url="javascript:__doPostBack('lnlFlow8PPT','')" data-title="aspx">パワーポイント資料ダウンロード<br>Download Powerpoint Presentation</a></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="lblAllProductStock" class="linkFormat" data-url="Report/AllProductStock.aspx" data-title="aspx">製品在庫一覧表<br>All Product Stock Report</span></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="lblHT7" class="linkFormat" url="">棚卸　（ハンディーターミナル）<br>HandyTerminalScreen 1</span></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="lblUnconfirmedProductList" class="linkFormat" data-url="Report/UnconfirmedProductList.aspx" data-title="aspx">未確認在庫一覧表<br>Mismatched Report</span></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="lbl2HT7" class="linkFormat" url="">照合棚卸　（ハンディーターミナル）: HandyTerminalScreen 2</span></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="lblShukkoScreen7" class="linkFormat" data-url="Transaction/ShukkoScreen.aspx" data-title="aspx">製品出庫　登録・修正・削除<br>Shukko Screen</span></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="lblMonthlyProductList" class="linkFormat" data-url="Report/MonthlyProductList.aspx" data-title="aspx">月末製品在庫一覧表<br>Monthly Final Stock Report</span></td></tr></tbody></table></div><div id="divAdmin" class="uppercontainer" style="position: relative; display: none; width: 100%; height: 5%; top: 0px; left: 0px;">
+                                    <table class="MenuTable" border="1" cellpadding="1" cellspacing="1" style="position: relative; width: 100%; height: 22%; top: 0px; left: 0px;">
+                                        <tbody><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="lblCreateUser" class="linkFormat" data-url="Login/CreateUser.aspx" data-title="aspx">ワークステーションの作成・修正<br>Create New Workstation</span></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="lblChangePassword" class="linkFormat" data-url="Login/ChangePassword.aspx" data-title="aspx">パスワードの変更<br>Change Password</span></td></tr></tbody></table></div><div id="divUser" class="uppercontainer" style="position: relative; display: none; width: 100%; height: 5%; top: 0px; left: 0px;">
+                                    <table class="MenuTable" border="1" cellpadding="1" cellspacing="1" style="position: relative; width: 100%; height: 22%; top: 0px; left: 0px;">
+                                        <tbody><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="Label4" class="linkFormat" data-url="Login/ChangePassword.aspx" data-title="aspx">パスワードの変更<br>Change Password</span></td></tr></tbody></table></div><div id="divCNC" class="uppercontainer" style="position: relative; display: none; width: 100%; height: 5%; top: 0px; left: 0px;">
+                                    <table class="MenuTable" border="1" cellpadding="1" cellspacing="1" style="position: relative; width: 100%; height: 22%; top: 0px; left: 0px;">                                        
+                                        <tbody><tr class="tdclass">
+                                            <td style="width: 303px">
+
+
+                                                <a id="btnStatusScreen" class="linkFormat" data-url="javascript:__doPostBack('btnStatusScreen','')" data-title="aspx" style="text-decoration:none;">作業実績・進捗状況問合せ画面①_CNC Process Status Screen①</a></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+
+                                             <a id="btnProcessCompletion" class="linkFormat" data-url="javascript:__doPostBack('btnProcessCompletion','')" data-title="aspx" style="text-decoration:none;">製造指示書消込 Process Plan Completion</a></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+
+                                                    <a id="btnDefectMaster" class="linkFormat" data-url="javascript:__doPostBack('btnDefectMaster','')" data-title="aspx" style="text-decoration:none;">不具合・廃棄内容マスター_Defect Content Master</a></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">                                               
+                                                <a id="btnMenuMaster" class="linkFormat" data-url="javascript:__doPostBack('btnMenuMaster','')" data-title="aspx" style="text-decoration:none;">Menu Master</a></td></tr></tbody></table></div><div id="divShirehin" class="uppercontainer" style="position: relative; display: none; width: 100%; height: 5%; top: 0px; left: 0px;">
+                                    <table class="MenuTable" border="1" cellpadding="1" cellspacing="1" style="position: relative; width: 100%; height: 22%; top: 0px; left: 0px;">
+                                        <tbody><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <a id="lnkShirehinFlowPPT" class="linkFormat pptLink" data-url="javascript:__doPostBack('lnkShirehinFlowPPT','')" data-title="aspx">パワーポイント資料ダウンロード<br>Download Powerpoint Presentation</a></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="lblShirehinPoScreen1" class="linkFormat" data-url="Transaction/ShirehinPoScreen.aspx" data-title="aspx">スポット材の発注<br>Shirehin PO Screen</span></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="lblShirehinPoList1" class="linkFormat" url="">スポット材の発注<br>Shirehin PO List</span></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="lblShirehinAcceptanceReport" class="linkFormat" data-url="Report/ShirehinAcceptanceReport.aspx" data-title="aspx">仕入受入予定明細書<br>Acceptance Report</span></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="lblShirehinNifudaReport" class="linkFormat" data-url="Report/ShirehinNifudaReport.aspx" data-title="aspx">製品荷札 （スポット材　受入⇒在庫）<br>Nifuda Report</span></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="lblShirehinHT" class="linkFormat" url="">スポット材入荷（ハンディーターミナル）: HandyTerminalScreen</span></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="lblShirehinChargeEntryScreen" class="linkFormat" data-url="Transaction/ShirehinChargeEntryScreen.aspx" data-title="aspx">スポット材入荷確認・チャージ登録<br>Charge Entry Screen</span></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="lblShirehinShukkaReport" class="linkFormat" data-url="Report/ShirehinShukkaReport.aspx" data-title="aspx">出荷・転送依頼カード<br>Shukka Screen Report</span></td></tr><tr class="tdclass">
+                                            <td style="width: 303px" align="center">
+                                                <span id="lblShirehinFlowName" class="linkFormat" url="">仕入先から得意先</span></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="lblShirehinPoScreen" class="linkFormat" data-url="Transaction/ShirehinPoScreen.aspx" data-title="aspx">スポット材の発注<br>Shirehin PO Screen</span></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="lblShirehinPoList" class="linkFormat" url="">スポット材の発注<br>Shirehin PO List</span></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="lblSpotNyukaEntryScreen" class="linkFormat" data-url="Transaction/SpotNyukaEntryScreen.aspx" data-title="aspx">スポット材入荷<br>Spot Nyuka Entry Screen</span></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="lblShirehinShukka" class="linkFormat" data-url="Transaction/ShirehinShukka.aspx" data-title="aspx">納品書発行画面<br>Shirehin Shukka Issue Screen</span></td></tr></tbody></table></div><div id="divSozaiSetsudan" class="uppercontainer" style="position: relative; display: none; width: 100%; height: 5%; top: 0px; left: 0px;">
+                                    <table class="MenuTable" border="1" cellpadding="1" cellspacing="1" style="position: relative; width: 100%; height: 22%; top: 0px; left: 0px;">
+                                        <tbody><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <a id="lnkSozaiSetsuzanFlow" class="linkFormat pptLink" data-url="javascript:__doPostBack('lnkSozaiSetsuzanFlow','')" data-title="aspx">パワーポイント資料ダウンロード<br>Download Powerpoint Presentation</a></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="lblMaterialShukkoEntryScreen" class="linkFormat" data-url="Transaction/MaterialShukkoEntryEditDeleteScreen.aspx" data-title="aspx">素材出向<br>Material Shukko</span></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="lblProcessPlaln1stScreen" class="linkFormat" data-url="Transaction/ProcessPlaln1stScreen.aspx" data-title="aspx">製 造 指示 書 画面<br>Process Plan Screen</span></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="lblProcessPlanLocation3" class="linkFormat" data-url="Transaction/ProcessPlanLocation.aspx" data-title="aspx">工程<br>Process Plan Report</span></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="lblNifudaPrintScreen3" class="linkFormat" data-url="Transaction/NifudaPrintScreen.aspx" data-title="aspx">荷札発行<br>Nifuda Generation Screen</span></td></tr></tbody></table></div><div id="divSehinSaikhako" class="uppercontainer" style="position: relative; display: none; width: 100%; height: 5%; top: 0px; left: 0px;">
+                                    <table class="MenuTable" border="1" cellpadding="1" cellspacing="1" style="position: relative; width: 100%; height: 22%; top: 0px; left: 0px;">
+                                        <tbody><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <a id="lnkSehinSeikhakoflow" class="linkFormat pptLink" data-url="javascript:__doPostBack('lnkSehinSeikhakoflow','')" data-title="aspx">パワーポイント資料ダウンロード<br>Download Powerpoint Presentation</a></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="lblProcessPlaln1stScreen2" class="linkFormat" data-url="Transaction/ProcessPlaln1stScreen.aspx" data-title="aspx">製 造 指示 書 画面<br>Process Plan Screen</span></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="lblProcessPlanLocation2" class="linkFormat" data-url="Transaction/ProcessPlanLocation.aspx" data-title="aspx">工程<br>Process Plan Report</span></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="lblNifudaPrintScreen2" class="linkFormat" data-url="Transaction/NifudaPrintScreen.aspx" data-title="aspx">荷札発行<br>Nifuda Generation Screen</span></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="lblShukkoScreen" class="linkFormat" data-url="Transaction/ShukkoScreen.aspx" data-title="aspx">製品出庫　登録・修正・削除<br>ShukkoEntryScreen</span></td></tr></tbody></table></div><div id="divOther" class="uppercontainer" style="position: relative; display: none; width: 100%; height: 5%; top: 0px; left: 0px;">
+                                    <table class="MenuTable" border="1" cellpadding="1" cellspacing="1" style="position: relative; width: 100%; height: 22%; top: 0px; left: 0px;">
+                                        <tbody><tr class="tdclass">
+                                            <td class="style1">
+                                                <span id="lblDeleteRecordsTensoDB" class="linkFormat" data-url="Transaction/DeleteRecordsTensoDB.aspx" data-title="aspx">デタをクリアーする<br>Clear Data</span></td></tr><tr class="tdclass">
+                                            <td class="style1">
+                                                <span id="lblUserManagement" class="linkFormat" url="">ユーザー管理<br>User Management</span></td></tr><tr class="tdclass hidden">
+                                            <td class="style1">
+                                                <span id="lblTemplates" class="linkFormat" url="">Templates</span></td></tr></tbody></table></div><div id="divTransaction" class="uppercontainer" style="position: relative; display: none; width: 100%; height: 5%; top: 0px; left: 0px;">
+                                    <table class="MenuTable" border="1" cellpadding="1" cellspacing="1" style="position: relative; width: 100%; height: 22%; top: 0px; left: 0px;">
+                                        <tbody><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="Label9" class="linkFormat" data-url="Transaction/PurchaseOrderEntry.aspx" data-title="aspx">素材発注（追加・変更・取消・分割）<br>Purchase Order Screen</span></td></tr><tr><td style="width: 303px">
+                                            <span id="Label8" class="linkFormat" data-url="Transaction/KoubanEntry.aspx" data-title="aspx">工番回答（重量納期変更・分割）<br>Kouban Entry Screen</span></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="Label6" class="linkFormat" data-url="Transaction/FutouNyukoEntry.aspx" data-title="aspx">埠頭・メーカー倉庫　入庫<br>Nyuko Entry Screen</span></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="Label7" class="linkFormat" data-url="Transaction/FutouNyukoEditDelete.aspx" data-title="aspx">埠頭・メーカー倉庫　入庫<br>Futou Nyuko Edit Delete Screen</span></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="Label3" class="linkFormat" data-url="Transaction/JizaiiNyukaEntry.aspx" data-title="aspx">林精鋼　入荷（自材）<br>JizaiNyuka Entry Screen</span></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="Label5" class="linkFormat" data-url="Transaction/JizaiiNyukaEditDelete.aspx" data-title="aspx">林精鋼　入荷（自材） JizaiNyuka Edit Delete Screen</span></td></tr></tbody></table></div><div id="divPhillippines" class="uppercontainer" style="position: relative; display: none; width: 100%; height: 5%; top: 0px; left: 0px;">
+                                    <table class="MenuTable" border="1" cellpadding="1" cellspacing="1" style="position: relative; width: 100%; height: 22%; top: 0px; left: 0px;">
+                                        <tbody><tr class="tdclass">
+                                            <td style="width: 303px; text-align: center;">Sales </td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="lblProductStock" class="linkFormat" data-url="Transaction/ProductStockScreen.aspx" data-title="aspx">製品在庫情報<br>Product Stock Screen</span></td></tr><tr class="tdclass">
+                                        <td style="width: 303px"></td>
+                                    </tr>
+                                        <tr class="tdclass">
+                                            <td style="width: 303px; text-align: center">Material </td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="lblMaterialStatusSearchScreen2" class="linkFormat" data-url="Transaction/MaterialStatusSearchScreen2.aspx" data-title="aspx">注番・工番 詳細情報<br>MaterialStatusSearchScreen2</span></td></tr><tr class="tdclass">
+                                            <td style="width: 303px"></td>
+                                        </tr>
+                                        <tr class="tdclass">
+                                            <td style="width: 303px; text-align: center">Factory </td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="lblJijaiNyuka" class="linkFormat" data-url="Transaction/JizaiiNyukaEntry.aspx" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("menulbl_NyukaEntryScreen").ToString().Replace("</br>", "<br>")) </span></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="lblActAlloc" class="linkFormat" data-url="Transaction/ActAllocScreen.aspx" data-title="aspx">実引当 :ActAllocScreen</span></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="lblProcessPlanReport" class="linkFormat" data-url="Report/ProcessPlanReport.aspx?searchBy=printFlag" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("menulbl_ProcessPlanReport").ToString().Replace("</br>", "<br>"))</span></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                        <span id="Label39" class="linkFormat" data-url="Transaction/PrintReportScreen.aspx?ScreenName=ProcessPlanReport" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("menulbl_ProcessPlanReport").ToString().Replace("</br>", "<br>"))</span>
+                                                    </td>
+                                                </tr>
+                                                <tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="lblFactoryProductionPlanExcel" class="linkFormat" data-url="Transaction/FactoryProductionPlan.aspx" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("menulbl_FactoryProductionPlan").ToString().Replace("</br>", "<br>"))</span></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                        <span id="lblProductNifudaGenereation" class="linkFormat" data-url="Transaction/NifudaPrintScreen.aspx" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("menulbl_NifudaGenerationScreen").ToString().Replace("</br>", "<br>"))</span>
+                                                    </td>
+                                                </tr>
+                                                <tr class="tdclass">
+                                            <td style="width: 303px"></td>
+                                        </tr>
+                                        <tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="lblHikinukiEntry" class="linkFormat" data-url="Transaction/HikinukiEntryScreen.aspx" data-title="aspx">引抜　日報　登録<br>Hikinuki Entry Screen</span></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="lblHikinukiEditDelete" class="linkFormat" data-url="Transaction/HikinukiEditDeleteScreen.aspx" data-title="aspx">引抜　日報　修正・削除<br>Hikinuki Edit Delete Screen</span></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="lblHTFinalInspection" class="linkFormat" data-url="HandyTerminal/FinalInspection/FIDateExaminerNifudaScanScreen.aspx" data-title="aspx">最終検査 登録 (ハンディーターミナル）<br>Final Inspection( HandyTerminal)</span></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="lblFinalInspectionEditDelete" class="linkFormat" data-url="Transaction/FinalInspectionIIEditDelete.aspx" data-title="aspx"> 最終検査 修正・削除<br>Final Inspection Edit Delete</span></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="lblFinalInspectionReport" class="linkFormat" data-url="Transaction/PrintReportScreen.aspx?ScreenName=FinalInspectionReport" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("title_ProductNyukoReportPrintScreen_L").ToString().Replace("</br>", "<br>"))</span></td></tr><tr class="tdclass">
+                                            <td style="width: 303px"></td>
+                                        </tr>
+                                        <tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="Label38" class="linkFormat">製品入庫リスト<br>Product Stock List</span></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="lblShukkaTensouInstructionCardReport1" class="linkFormat" data-url="Transaction/PrintReportScreen.aspx?ScreenName=ShukkaCard" data-title="aspx">出荷・転送依頼カード<br>Shukka Instruction card(Report)</span></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="lblShukkaInstructionNifudaGeneration" class="linkFormat" data-url="Transaction/ShukkaInstructionNifudaGenerationScreen.aspx" data-title="aspx">張替荷札の発行<br>Shukka Instruction Nifuda Generation Screen</span></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="Label47" class="linkFormat" data-url="HandyTerminal/MenuScreen.aspx" data-title="aspx">出荷　工場用（ハンディーターミナル）<br>Factory Shukka( HandyTerminal)</span></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="lblCustInvoiceGeneration" class="linkFormat" data-url="Transaction/InvoiceGenerationScreen.aspx" data-title="aspx">納品書発行画面<br>Invoice Generation Screen</span></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="lblSalesInvoiceGenaration" class="linkFormat" data-url="Transaction/PrintReportScreen.aspx?ScreenName=SalesInvoice" data-title="aspx">納品書売上伝票<br>Invoice(Sales)</span></td></tr><tr class="tdclass">
+                                            <td style="width: 303px"></td>
+                                        </tr>
+                                        <tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="lblProcessPlanEntry" class="linkFormat" data-url="Transaction/ProcessPlanScreen.aspx" data-title="aspx">Process Plan Entry Screen</span></td></tr></tbody></table></div><div id="divSales" class="uppercontainer" style="position: relative; display: none; width: 100%; height: 5%; top: 0px; left: 0px;">
+                                    <table class="MenuTable" border="1" cellpadding="1" cellspacing="1" style="position: relative; width: 100%; height: 22%; top: 0px; left: 0px;">
+                                        <tbody><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <button class="underDev" tabindex="-1" onclick="javascript: ShowUnderDevMessage(); return false;">
+                                                    束別在庫問合せ（向け先材・一般材・スポット材・黒皮）<br> Tag Wise Stock Status Search (Mukesaki・General・Spot・KW)</button></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                        <span id="Label12" class="linkFormat" data-url="Transaction/ProductStockScreen.aspx" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_ProductStatusSearch").ToString().Replace("</br>", "<br>"))</span>
+                                                    </td>
+                                                </tr>
+                                                <tr class="tdclass">
+                                            <td style="width: 303px">
+                                                        <span id="lblspotProductStatusSales" class="linkFormat" data-url="Transaction/SpotProductStockSearchScreen.aspx" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_SpotKWProductStatusSearch_WithoutOrderNumber").ToString().Replace("</br>", "<br>"))</span>
+                                                    </td>
+                                                </tr>
+                                                <tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="Label1" class="linkFormat" data-url="Transaction/ProcessStatusSearchForSales1.aspx" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_SalesProductionStatusSearch").ToString().Replace("</br>", "<br>"))</span></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="Label10" class="linkFormat" data-url="Transaction/ProcessStatusSearchForFactory.aspx" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_FactoryDailyWorkStatusSearch").ToString().Replace("</br>", "<br>"))</span></td></tr><tr class="tdclass">
+                                            <td class="style2">
+                                                        <span id="lblInvoiceSearch" class="linkFormat" data-url="Transaction/SalesInvoiceSearch.aspx" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_SalesInvoiceandPaymentsSearch").ToString().Replace("</br>", "<br>"))</span>
+                                                    </td>
+                                                </tr>
+                                                <tr class="tdclass">
+                                            <td style="width: 303px"></td>
+                                        </tr>
+                                        <tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <button class="underDev" tabindex="-1" onclick="javascript: ShowUnderDevMessage(); return false;">
+                                                    自材の問合せ（営業・工場用）<br> Jizai Material Search (Sales・Factory)</button></td></tr><tr class="tdclass">
+                                            <td style="width: 303px"></td>
+                                        </tr>
+                                        <tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="Label11" class="linkFormat" data-url="Transaction/KhakoiraiEntry.aspx" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_ProductionOrderEntry").ToString().Replace("</br>", "<br>"))</span></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                        <span id="Label16" class="linkFormat" data-url="Transaction/PrintReportScreen.aspx?ScreenName=kakouiraiData" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_ProductionOrderReportPrintReprint").ToString().Replace("</br>", "<br>"))</span>
+                                                    </td>
+                                                </tr>
+                                                <tr class="tdclass">
+                                            <td style="width: 303px"></td>
+                                        </tr>
+                                        <tr class="tdclass">
+                                            <td style="width: 303px">
+                                                        <span id="Label17" class="linkFormat" data-url="Transaction/DeliveryConfirmationScreen.aspx" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_ProductionOrderDeliveryConfirmationEntry").ToString().Replace("</br>", "<br>"))</span>
+                                                    </td>
+                                                </tr>
+                                                <tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="Label20" class="linkFormat" data-url="Transaction/PrintReportScreen.aspx?ScreenName=SalesDeliveryDate" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_ProductionOrderDeliveryConfirmationReportPrintReprint").ToString().Replace("</br>", "<br>"))</span></td></tr><tr class="tdclass">
+                                            <td style="width: 303px"></td>
+                                        </tr>
+
+
+                                        <tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="lblOrderAckwldgmnt" class="linkFormat" data-url="Transaction/ShukkaTensouInstructionCardScreen.aspx" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_ShukkaInstructionGeneration").ToString().Replace("</br>", "<br>"))</span></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                        <span id="lblSpotShukkaInstructionSales" class="linkFormat" data-url="Transaction/SpotShukkaTensouInstructionCardScreen.aspx" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_ShukkaInstructionGeneration_WithoutOrderNumber").ToString().Replace("</br>", "<br>"))</span>
+                                                    </td>
+                                                </tr>
+                                                <tr class="tdclass">
+                                            <td style="width: 303px">
+                                                        <span id="lblShukkaTensouInstructionCardReport" class="linkFormat" data-url="Transaction/printReportScreen.aspx?ScreenName=ShukkaCard" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_ShukkaInstructionReportPrintReprint").ToString().Replace("</br>", "<br>"))</span>
+                                                    </td>
+                                                </tr>
+                                                <tr class="tdclass">
+                                            <td style="width: 303px">
+                                                        <span id="lblSpotShukkaInstructionCardSales" class="linkFormat" data-url="Transaction/printReportScreen.aspx?ScreenName=SpotShukkaCard" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_ShukkaInstructionReportPrintReprint_WithoutOrderNumber").ToString().Replace("</br>", "<br>"))</span>
+                                                    </td>
+                                                </tr>
+                                                <tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <button class="underDev" tabindex="-1" onclick="javascript: ShowUnderDevMessage(); return false;">
+                                                    ＲＯＬＬ使用予想申込（月一）<br> PO Predication Entry (Monthly)</button></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="lblSpotPOEntrySales" class="linkFormat" data-url="Transaction/SpotPOEntryScreen.aspx" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_SpotPOEntry").ToString().Replace("</br>", "<br>"))</span></td></tr><tr class="tdclass">
+                                            <td style="width: 303px"></td>
+                                        </tr>
+
+                                        <tr class="tdclass">
+                                            <td style="width: 303px">
+                                                
+                                                
+
+                                                <span id="Label31" class="linkFormat" data-url="Transaction/HikitoriIraiEntryScreen.aspx" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_TransportMaterialRequestEntry").ToString().Replace("</br>", "<br>"))</span></td></tr><tr class="tdclass">
+                                            <td style="width: 303px"></td>
+                                        </tr>
+
+
+
+
+                                        <tr class="tdclass">
+                                            <td style="width: 303px"></td>
+                                        </tr>
+                                        
+
+
+                                        <tr class="tdclass">
+                                            <td style="width: 303px">
+                                                
+
+                                                <span id="Label41" class="linkFormat" data-url="Transaction/KhakoraiCompletionScreen.aspx" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_ProductionOrderCompletion").ToString().Replace("</br>", "<br>"))</span></td></tr></tbody></table></div><div id="divSalesManagement" class="uppercontainer" style="position: relative; display: none; width: 100%; height: 5%; top: 0px; left: 0px;">
+                                    <table class="MenuTable" border="1" cellpadding="1" cellspacing="1" style="position: relative; width: 100%; height: 22%; top: 0px; left: 0px;">
+                                        <tbody><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                
+                                                <span id="lblTagWiseStockStatusSearch2" class="linkFormat" data-url="Transaction/TagWiseStockStatusSearch.aspx" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_TagWiseStockStatusSearch").ToString().Replace("</br>", "<br>"))</span></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                        <span id="Label43" class="linkFormat" data-url="Transaction/ProductStockScreen.aspx" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_ProductStatusSearch").ToString().Replace("</br>", "<br>"))</span>
+                                                    </td>
+                                                </tr>
+                                                <tr class="tdclass">
+                                            <td style="width: 303px">
+                                                        <span id="lblSpotProdStatusSaleMangmnt" class="linkFormat" data-url="Transaction/SpotProductStockSearchScreen.aspx" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_SpotKWProductStatusSearch_WithoutOrderNumber").ToString().Replace("</br>", "<br>"))</span>
+                                                    </td>
+                                                </tr>
+                                                <tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="Label48" class="linkFormat" data-url="Transaction/ProcessStatusSearchForSales1.aspx" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_SalesProductionStatusSearch").ToString().Replace("</br>", "<br>"))</span></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                        <span id="lblSalesInvoicePaySearch" class="linkFormat" data-url="Transaction/SalesInvoiceSearch.aspx" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_SalesInvoiceandPaymentsSearch").ToString().Replace("</br>", "<br>"))</span>
+                                                    </td>
+                                                </tr>
+                                                <tr class="tdclass">
+                                            <td style="width: 303px"></td>
+                                        </tr>
+
+                                        <tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <button class="underDev" tabindex="-1" onclick="javascript: ShowUnderDevMessage(); return false;">
+                                                    自材の問合せ（営業・工場用）<br> Jizai Material Search (Sales・Factory)</button></td></tr><tr class="tdclass">
+                                            <td style="width: 303px"></td>
+                                        </tr>
+
+                                        <tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="lblSpotPOSalesMangment" class="linkFormat" data-url="Transaction/SpotPOEntryScreen.aspx" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_SpotPOEntry").ToString().Replace("</br>", "<br>"))</span></td></tr><tr class="tdclass">
+                                            <td style="width: 303px"></td>
+                                        </tr>
+
+
+                                        <tr class="tdclass">
+                                            <td style="width: 303px">
+                                                        <span id="Label45" class="linkFormat" data-url="Transaction/HikitoriIraiEntryScreen.aspx" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_TransportMaterialRequestEntry").ToString().Replace("</br>", "<br>"))</span>
+                                                    </td>
+                                                </tr>
+                                                <tr class="tdclass">
+                                            <td style="width: 303px"></td>
+                                        </tr>
+
+                                        <tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="lblSpotNyukaListReportSalesMangment" class="linkFormat" data-url="Transaction/PrintReportScreen.aspx?ScreenName=SpotNyukaReceivingList" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_SpotNyukaReceivingListReport").ToString().Replace("</br>", "<br>"))</span></td></tr><tr class="tdclass">
+                                            <td style="width: 303px"></td>
+                                        </tr>
+
+                                        <tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="Label36" class="linkFormat" data-url="Transaction/SpotNyukaEntryEditDelete.aspx" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_SpotMaterialNyukaEntry").ToString().Replace("</br>", "<br>"))</span></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+
+
+                                                        <span id="lblMenu_JijaiKwNyukaSalesMngmnt" class="linkFormat" data-url="Transaction/KurokawaNyukaEntryScreen.aspx" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_JizaiMaterialNyukaEntry").ToString().Replace("</br>", "<br>"))</span>
+                                                    </td>
+                                                </tr>
+                                                <tr class="tdclass">
+                                            <td style="width: 303px"></td>
+                                        </tr>
+
+                                        <tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="lblSpotProdNifudaSalesMangment" class="linkFormat" data-url="Transaction/SpotProductNifudaGenerationScreen.aspx" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_MultipleProductNifudaGenerationSpot").ToString().Replace("</br>", "<br>"))</span></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="lblNifudaKurokawa" class="linkFormat" data-url="Transaction/KurokawaProductNifudaGenerationScreen.aspx" data-title="aspx"><@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_MultipleProductTagGenerationKW").ToString().Replace("</br>", "<br>"))</span></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="Label51" class="linkFormat" data-url="Transaction/SpecialProductTagGenration.aspx" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_SpecialProductTagGeneration").ToString().Replace("</br>", "<br>"))</span></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="lblMenu_NifudaReprintCancelationSalesMngmnt" class="linkFormat" data-url="Transaction/NifudaReprintCancelationScreen.aspx" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_ProductShukkaTagReprintDelete").ToString().Replace("</br>", "<br>"))</span></td></tr><tr class="tdclass">
+                                        <td style="width: 303px"></td>
+                                    </tr>
+
+                                        <tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="lblShukkaInstructionNifuda" class="linkFormat" data-url="Transaction/ShukkaInstructionNifudaGenerationScreen.aspx" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_ShippingTagEntry").ToString().Replace("</br>", "<br>"))</span></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+
+                                                        <span id="lblShukkaNifudaGenBach" class="linkFormat" data-url="Transaction/ShukkaNifudaGenBach.aspx" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_ShukaNifudaGenerationBach").ToString().Replace("</br>", "<br>"))</span>
+                                                    </td>
+                                                </tr>
+                                                <tr class="tdclass">
+                                            <td style="width: 303px">
+                                                        <span id="lblShukkaInstructionNifudaReprint" class="linkFormat" data-url="Transaction/ShukkaNifudaReprintScreen.aspx" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_ShippingTagReprintNoOfUnitWeight").ToString().Replace("</br>", "<br>"))</span>
+                                                    </td>
+                                                </tr>
+                                                <tr class="tdclass">
+                                            <td style="width: 303px"></td>
+                                        </tr>
+                                        
+
+                                        <tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="Label49" class="linkFormat" data-url="Transaction/ThabaCompletionScreen.aspx" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_TagCompletion").ToString().Replace("</br>", "<br>"))</span></td></tr><tr class="tdclass">
+                                            <td style="width: 303px"></td>
+                                        </tr>
+
+
+
+                                        <tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="Label37" class="linkFormat" data-url="Transaction/InvoiceEntryScreen.aspx" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_DeliveryandAcknowledgementInvoiceEntry").ToString().Replace("</br>", "<br>"))</span></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="Label26" class="linkFormat" data-url="Transaction/PrintReportScreen.aspx?ScreenName=SpotSalesInvoice" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_SalesInvoicePrintReprint").ToString().Replace("</br>", "<br>"))</span></td></tr><tr class="tdclass">
+                                            <td style="width: 303px"></td>
+                                        </tr>
+                                        <tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <button class="underDev" tabindex="-1" onclick="javascript: ShowUnderDevMessage(); return false;">
+                                                    鋼材試験成績表（登録・修正・削除・発行・再発行）<br> HSK Steel Test (Entry・Edit・Delete ・ReGenerate)</button></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <button class="underDev" tabindex="-1" onclick="javascript: ShowUnderDevMessage(); return false;">
+                                                    メーカーミルシート（登録・修正・削除・再発行）<br> Maker Milsheet  (Entry・Edit・Delete ・ReGenerate)</button></td></tr><tr class="tdclass">
+                                            <td style="width: 303px"></td>
+                                        </tr>
+                                        <tr class="tdclass">
+                                            <td style="width: 303px">
+                                                <span id="lblRateAmountConfirmation" class="linkFormat" data-url="Transaction/SalesInvoiceRateAmountConfirmation.aspx" data-title="aspx">売上伝票（単価・金額　確定）<br>Sales Invoice (Rate・Amount Confirmation)</span></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                
+                                                <span id="lblSalesInvoiceHandWritten" class="linkFormat" data-url="Transaction/SalesInvoiceEntryScreen.aspx" data-title="aspx">売上伝票（手書伝票・訂正伝票）（登録・修正・削除）<br>Sales Invoice (Handwritten Slip・Correction Slip)(Entry・Edit・Delete)</span></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                
+                                                <span id="lblPaymentReceived" class="linkFormat" data-url="Transaction/PaymentReceivedEntryScreen.aspx" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_PaymentsDepositEntry").ToString().Replace("</br>", "<br>"))</span></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+
+
+                                                        <span id="lblRateUnconfirmReport" class="linkFormat" data-url="Transaction/UnConfirmRateReportPrintSceen.aspx" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_SalesInvoiceRateUnconfirmedReport").ToString().Replace("</br>", "<br>"))</span>
+                                                    </td>
+                                                </tr>
+                                                <tr class="tdclass">
+                                            <td style="width: 303px">
+                                                
+
+                                                <span id="lblCurrentBillGen" class="linkFormat" data-url="Transaction/CurrentPreviousConsumptionTaxGeneration.aspx" data-title="aspx">今回請求・前回請求・消費税の作成 <br>Current・Previous・ConsumptionTax Invoice Generation</span></td></tr><tr class="tdclass">
+                                            <td style="width: 303px">
+                                                
+
+                                                <span id="lblPreInvoiceDataPrint" class="linkFormat" data-url="Transaction/PreInvoiceDataPrintScreen.aspx?ScreenName=Pre" data-title="aspx"> 請求書発行前金額確認一覧の印刷<br>Confirmation list before issuing the invoice</span></td></tr><tr>
+                        <td style="width: 303px">
+                            
+
+                            <span id="lblInvoiceAmountCorrection" class="linkFormat" data-url="Transaction/BillAmountCorrection.aspx" data-title="aspx"> 請求書金額の修正<br>Invoice Amount Correction</span></td></tr><tr class="tdclass">
+                        <td style="width: 303px">
+                            
+
+                            <span id="PostInvoiceDataPrintScreen" class="linkFormat" data-url="Transaction/PreInvoiceDataPrintScreen.aspx?ScreenName=Post" data-title="aspx">請求書発行後金額確認一覧の印刷（請求書発行控え）<br>Confirmation list after issuing the invoice</span></td></tr><tr class="tdclass">
+                        <td style="width: 303px">
+                            
+                            <span id="lblInvoiceGeneration" class="linkFormat" data-url="Transaction/FinalInvoicePrintScreen.aspx" data-title="aspx"> 請求書の発行・再発行<br>Final Invoice Generation・Regeneration</span></td></tr><tr>
+                        <td style="width: 303px">
+                            <span id="Label84" class="linkFormat" data-url="Transaction/FinalInvoiceDelete.aspx" data-title="aspx">Final Invoice Delete</span></td></tr><tr class="tdclass">
+                        <td style="width: 303px"></td>
+                    </tr>
+
+                    <tr class="tdclass">
+                        <td style="width: 303px">
+                                                        <span id="lblExchangeRate" class="linkFormat" data-url="Transaction/ExchangeRateEntryEditDelete.aspx" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_ExchangeRateEntry").ToString().Replace("</br>", "<br>"))</span>
+                                                    </td>
+                                                </tr>
+                                                <tr class="tdclass">
+                        <td style="width: 303px">
+                            
+
+                            <span id="lblSalesLadgerBatch" class="linkFormat" data-url="Transaction/SalesLedgerBatch.aspx" data-title="aspx">売上元帳のバッチ更新処理の実行<br>Sales Ledger Batch</span></td></tr><tr class="tdclass">
+                        <td style="width: 303px">
+                            
+
+                            <span id="lblSalesLedgerReport" class="linkFormat" data-url="Transaction/SalesLedgerReportScreen.aspx" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_SalesLedgerReport").ToString().Replace("</br>", "<br>"))</span></td></tr><tr class="tdclass">
+                        <td style="width: 303px">
+                            
+
+                            <span id="lblSalesReceivableReport" class="linkFormat" data-url="Transaction/SalesReceivablesPrintScreen.aspx" data-title="aspx">売掛残高一覧の印刷<br>Sales Receivables Report</span></td></tr><tr class="tdclass">
+                        <td style="width: 303px"></td>
+                    </tr>
+                    <tr class="tdclass">
+                        <td style="width: 303px"></td>
+                    </tr>
+                    <tr class="tdclass">
+                        <td style="width: 303px">
+                                                        <span id="Label42" class="linkFormat" data-url="Transaction/KhakoraiCompletionScreen.aspx" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_ProductionOrderCompletion").ToString().Replace("</br>", "<br>"))</span>
+                                                    </td>
+                                                </tr>
+                                                <tr class="tdclass">
+                        <td style="width: 303px"></td>
+                    </tr>
+                    <tr class="tdclass">
+                        <td class="style3">
+                            <span id="lblSalesInchargeEntry" class="linkFormat" data-url="Masters/M_SalesInchargeEntry.aspx" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_SalesInchageAllocation").ToString().Replace("</br>", "<br>"))</span></td></tr><tr class="tdclass">
+                        <td style="width: 303px">
+                            <button class="underDev" tabindex="-1" onclick="javascript: ShowUnderDevMessage(); return false;">
+                                                            製品・スポット在庫一覧表の印刷<br /> Product・Spot Stock Report
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                                <tr class="tdclass">
+                        <td class="style3">
+                                                        <span id="lblStockVerificationStartSaleMngmnt" class="linkFormat" data-url="Transaction/ProductStockVerificatonStartScreen.aspx" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_ProductStockVerificationStart").ToString().Replace("</br>", "<br>"))</span>
+                                                    </td>
+                                                </tr>
+                                                <tr class="tdclass">
+                        <td class="style3">
+                                                        <span id="lblUnVerifiedStockReportSaleMngmnt" class="linkFormat" data-url="Transaction/PrintReportScreen.aspx?ScreenName=UnverifiedProductStockList" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_UnverifiedProductStockingReport").ToString().Replace("</br>", "<br>"))</span>
+                                                    </td>
+                                                </tr>
+                                                <tr class="tdclass">
+                        <td class="style3">
+                                                        <span id="lblVerifiedStockReportSaleMngmnt" class="linkFormat" data-url="Transaction/PrintReportScreen.aspx?ScreenName=VerifiedProductStockList" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_VerifiedProductStockingReport").ToString().Replace("</br>", "<br>"))</span>
+                                                    </td>
+                                                </tr>
+                                                <tr class="tdclass">
+                        <td style="width: 303px"></td>
+                    </tr>
+                    <tr class="tdclass">
+                        <td style="width: 303px">
+                                                        <span id="Label40" class="linkFormat" data-url="HandyTerminal/MenuScreen.aspx" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_HandyTerminalMenuPage_ALL").ToString().Replace("</br>", "<br>"))</span>
+                                                    </td>
+                                                </tr>
+                                                <tr class="tdclass">
+                        <td style="width: 303px">
+                            <button class="underDev" tabindex="-1" onclick="javascript: ShowUnderDevMessage(); return false;">
+                                営業所用ハンディーターミナル用メニューに移動<br> Handy Terminal Menu Page (For Sales)"</button></td></tr></tbody></table></div><div id="divMaterialManagement" class="uppercontainer" style="position: relative; display: none; width: 100%; height: 5%; top: 0px; left: 0px;">
+                <table class="MenuTable" border="1" cellpadding="1" cellspacing="1" style="position: relative; width: 100%; height: 22%; top: 0px; left: 0px;">
+                    <tbody><tr class="tdclass">
+                        <td style="width: 303px">
+                            
+
+                            <span id="lblMenu_MaterialStatusSearchMatlDept" class="linkFormat" data-url="Transaction/MaterialStatusSearchScreen1.aspx" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_JizaiMaterialSearchFactory").ToString().Replace("</br>", "<br>"))</span></td></tr><tr class="tdclass">
+                        <td style="width: 303px">
+                            
+                            <span id="lblRollPOQtyStatusSearch" class="linkFormat" data-url="Transaction/POStatusSearchScreen.aspx" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_RollPOQtyStatusSearch").ToString().Replace("</br>", "<br>"))</span></td></tr><tr class="tdclass">
+                        <td style="width: 303px">
+                                                        <span id="lblInProgressStatusSearch" class="linkFormat" data-url="Transaction/KakouiraiStatusSearchScreen1.aspx" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_ProductionOrderStatusScreen").ToString().Replace("</br>", "<br>"))</span>
+                                                    </td>
+                                                </tr>
+                                                <tr class="tdclass">
+                        <td style="width: 303px"></td>
+                    </tr>
+                    <tr class="tdclass">
+                        <td style="width: 303px">
+                            <button class="underDev" tabindex="-1" onclick="javascript: ShowUnderDevMessage(); return false;">
+                                束別在庫問合せ（向け先材・一般材・スポット材・黒皮）<br> Tag Wise Stock Status Search (Mukesaki・General・Spot・KW)</button></td></tr><tr class="tdclass">
+                        <td style="width: 303px">
+                            <span id="Label52" class="linkFormat" data-url="Transaction/ProductStockScreen.aspx" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_ProductStatusSearch").ToString().Replace("</br>", "<br>"))</span></td></tr><tr class="tdclass">
+                        <td style="width: 303px">
+                            <button class="underDev" tabindex="-1" onclick="javascript: ShowUnderDevMessage(); return false;">
+                                メーカーミルシート（登録・修正・削除・再発行）<br> Maker Milsheet  (Entry・Edit・Delete ・ReGenerate)</button></td></tr><tr class="tdclass">
+                        <td style="width: 303px">
+                            <span id="lblSpotProdStatusMaterial" class="linkFormat" data-url="Transaction/SpotProductStockSearchScreen.aspx" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_SpotKWProductStatusSearch_WithoutOrderNumber").ToString().Replace("</br>", "<br>"))</span></td></tr><tr class="tdclass">
+                        <td style="width: 303px">
+                            <span id="Label54" class="linkFormat" data-url="Transaction/ProcessStatusSearchForSales1.aspx" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_SalesProductionStatusSearch").ToString().Replace("</br>", "<br>"))</span></td></tr><tr class="tdclass">
+                        <td style="width: 303px">
+                                                        <span id="lblFactoryDailyWorkStatusSearch" class="linkFormat" data-url="Transaction/ProcessStatusSearchForFactory.aspx" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_FactoryDailyWorkStatusSearch").ToString().Replace("</br>", "<br>"))</span>
+                                                    </td>
+                                                </tr>
+                                                <tr class="tdclass">
+                        <td style="width: 303px">
+                                                        <span id="lblSpotPOMaterial" class="linkFormat" data-url="Transaction/SpotPOEntryScreen.aspx" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_SpotPOEntry").ToString().Replace("</br>", "<br>"))</span>
+                                                    </td>
+                                                </tr>
+                                                <tr class="tdclass">
+                        <td style="width: 303px"></td>
+                    </tr>
+
+                    <tr class="tdclass">
+                        <td style="width: 303px">
+
+                                                        <span id="Label53" class="linkFormat" data-url="Transaction/HikitoriIraiEntryScreen.aspx" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_TransportMaterialRequestEntry").ToString().Replace("</br>", "<br>"))</span>
+                                                    </td>
+                                                </tr>
+                                                <tr class="tdclass">
+                        <td style="width: 303px">
+                            <button class="underDev" tabindex="-1" onclick="javascript: ShowUnderDevMessage(); return false;">
+                                ＲＯＬＬ使用予想申込（月一）<br> ROLL PO Forecast (Monthly)</button></td></tr><tr class="tdclass">
+                        <td style="width: 303px">
+                            <button class="underDev" tabindex="-1" onclick="javascript: ShowUnderDevMessage(); return false;">
+                                ＲＯＬＬ発注検討（月一）<br> ROLL PO Examination (Monthly)</button></td></tr><tr class="tdclass">
+                        <td style="width: 303px">
+                            
+                            <span id="lblRollPOForecast" class="linkFormat" data-url="Transaction/POByEmail.aspx" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_RollPOSendByMail").ToString().Replace("</br>", "<br>"))</span></td></tr><tr class="tdclass">
+                        <td style="width: 303px">
+
+
+                                                        <span id="Label30" class="linkFormat" data-url="Transaction/PurchaseOrderEntry.aspx" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_PurchaseOrderEntry").ToString().Replace("</br>", "<br>"))</span>
+                                                    </td>
+                                                </tr>
+                                                <tr class="tdclass">
+                        <td style="width: 303px">
+
+                                                        <span id="Label29" class="linkFormat" data-url="Transaction/KoubanEntry.aspx" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_KoubanReply").ToString().Replace("</br>", "<br>"))</span>
+                                                    </td>
+                                                </tr>
+                                                <tr class="tdclass">
+                        <td style="width: 303px"></td>
+                    </tr>
+
+                    <tr class="tdclass">
+                        <td style="width: 303px">
+                                                        <span id="Label55" class="linkFormat" data-url="Transaction/KhakoiraiEntry.aspx" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_ProductionOrderEntry").ToString().Replace("</br>", "<br>"))</span>
+                                                    </td>
+                                                </tr>
+                                                <tr class="tdclass">
+                        <td style="width: 303px">
+                                                        <span id="Label56" class="linkFormat" data-url="Transaction/PrintReportScreen.aspx?ScreenName=kakouiraiData" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_ProductionOrderReportPrintReprint").ToString().Replace("</br>", "<br>"))</span>
+                                                    </td>
+                                                </tr>
+                                                <tr class="tdclass">
+                        <td style="width: 303px"></td>
+                    </tr>
+
+
+                    <tr class="tdclass">
+                        <td style="width: 303px">
+                            <span id="Label57" class="linkFormat" data-url="Transaction/DeliveryConfirmationScreen.aspx" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_ProductionOrderDeliveryConfirmationEntry").ToString().Replace("</br>", "<br>"))</span></td></tr><tr class="tdclass">
+                        <td style="width: 303px">
+                            <span id="Label58" class="linkFormat" data-url="Transaction/PrintReportScreen.aspx?ScreenName=SalesDeliveryDate" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_ProductionOrderDeliveryConfirmationReportPrintReprint").ToString().Replace("</br>", "<br>"))</span></td></tr><tr class="tdclass">
+                        <td style="width: 303px"></td>
+                    </tr>
+
+                    <tr class="tdclass">
+                        <td style="width: 303px">
+                            <span id="Label21" class="linkFormat" data-url="Transaction/PrintReportScreen.aspx?ScreenName=MatlDept&amp;Depart=matl" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_ProductionOrderKakouiraiListReportPrint").ToString().Replace("</br>", "<br>"))</span></td></tr><tr class="tdclass">
+                        <td style="width: 303px">
+                            <span id="Label19" class="linkFormat" data-url="Transaction/PrintReportScreen.aspx?ScreenName=KakouiraiConfirmationReportPrint" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_ProductionOrderKakouiraiDeliveryConfirmationReportPrint").ToString().Replace("</br>", "<br>"))</span></td></tr><tr class="tdclass">
+                        <td style="width: 303px"></td>
+                    </tr>
+
+                    <tr class="tdclass">
+                        <td style="width: 303px">
+
+
+                                                        <span id="lblTempalloc" class="linkFormat" data-url="Transaction/TempAllocation.aspx" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_TempAllocation").ToString().Replace("</br>", "<br>"))</span>
+                                                    </td>
+                                                </tr>
+                                                <tr class="tdclass">
+                        <td style="width: 303px"></td>
+                    </tr>
+                    <tr class="tdclass">
+                        <td style="width: 303px">
+
+                                                        <span id="lblPendingProductionOrderListReport" class="linkFormat" data-url="Transaction/PrintReportScreen.aspx?ScreenName=PendingProductionOrderList" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_HoldProductionOrderKakouiraiReport").ToString().Replace("</br>", "<br>"))</span>
+                                                    </td>
+                                                </tr>
+                                                <tr class="tdclass">
+                        <td style="width: 303px"></td>
+                    </tr>
+                    <tr class="tdclass">
+                        <td style="width: 303px">
+                                                        <span id="lblFutouNyukoEntry" class="linkFormat" data-url="Transaction/FutouNyukoEntry.aspx" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_ShipyardNyukoEntry").ToString().Replace("</br>", "<br>"))</span>
+                                                    </td>
+                                                </tr>
+                                                <tr class="tdclass">
+                        <td style="width: 303px">
+                                                        <span id="lblFutouNyukoEditDelete" class="linkFormat" data-url="Transaction/FutouNyukoEditDelete.aspx" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_ShipyardNyukoEditDelete").ToString().Replace("</br>", "<br>"))</span>
+                                                    </td>
+                                                </tr>
+                                                <tr class="tdclass">
+                        <td style="width: 303px">
+                            <span id="lblFotouShukko" class="linkFormat" data-url="Transaction/FutouShukkoEntry.aspx" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_ShipyardShukkoEntry").ToString().Replace("</br>", "<br>"))</span></td></tr><tr class="tdclass">
+                        <td style="width: 303px">
+                            <span id="lblFotouShukkoEditDelete" class="linkFormat" data-url="Transaction/FutouShukkoEditDelete.aspx" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_ShipyardShukkoEditDelete").ToString().Replace("</br>", "<br>"))</span></td></tr><tr class="tdclass">
+                        <td style="width: 303px">
+
+                                                        <span id="lblWarehouseToSupplierEntry" class="linkFormat" data-url="Transaction/TensouEntryEditDelete.aspx" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_WarehouseToSupplierEntry").ToString().Replace("</br>", "<br>"))</span>
+                                                    </td>
+                                                </tr>
+                                                <tr class="tdclass">
+                        <td style="width: 303px">
+                            <button class="underDev" tabindex="-1" onclick="javascript: ShowUnderDevMessage(); return false;">
+                                メーカーミルシート（登録・修正・削除・再発行）<br> Maker Milsheet  (Entry・Edit・Delete ・ReGenerate)</button></td></tr><tr class="tdclass">
+                        <td style="width: 303px">
+                            <span id="lblKoubanCompletion" class="linkFormat" data-url="Transaction/KoubanCompletionScreen.aspx" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_KoubanCompletion").ToString().Replace("</br>", "<br>"))</span></td></tr><tr class="tdclass">
+                        <td style="width: 303px"></td>
+                    </tr>
+
+                    <tr class="tdclass">
+
+                        <td style="width: 303px">
+
+
+                                                        <span id="Label35" class="linkFormat" data-url="Transaction/KhakoraiCompletionScreen.aspx" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_ProductionOrderCompletion").ToString().Replace("</br>", "<br>"))</span>
+                                                    </td>
+                                                </tr>
+                                                <tr class="tdclass">
+                        <td style="width: 303px"></td>
+                    </tr>
+
+                    <tr class="tdclass">
+                        <td style="width: 303px">
+                            <span id="Label81" class="linkFormat" url="Transaction/MaterialStatusForSalesSearchScreen1.aspx">Matl Status for sales</span></td></tr></tbody></table></div><div id="divFactoryOffice" class="uppercontainer" style="position: relative; display: none; width: 100%; height: 5%; top: 0px; left: 0px;">
+                <table class="MenuTable" border="1" cellpadding="1" cellspacing="1" style="position: relative; width: 100%; height: 22%; top: 0px; left: 0px;">
+                    <tbody><tr class="tdclass">
+                        <td style="width: 303px">
+                            <button class="underDev" tabindex="-1" onclick="javascript: ShowUnderDevMessage(); return false;">
+                                束別在庫問合せ（向け先材・一般材・スポット材・黒皮）<br> Tag Wise Stock Status Search (Mukesaki・General・Spot・KW)</button></td></tr><tr class="tdclass">
+                        <td style="width: 303px">
+                                                        <span id="Label60" class="linkFormat" data-url="Transaction/ProductStockScreen.aspx" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_ProductStatusSearch").ToString().Replace("</br>", "<br>"))</span>
+                                                    </td>
+                                                </tr>
+                                                <tr class="tdclass">
+                                        <td style="width: 303px">
+                                            <span id="lblSPotProductStatusFactoryOffice" class="linkFormat" data-url="Transaction/SpotProductStockSearchScreen.aspx" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_SpotKWProductStatusSearch_WithoutOrderNumber").ToString().Replace("</br>", "<br>"))</span></td></tr><tr class="tdclass">
+                        <td style="width: 303px">
+                                                        <span id="Label62" class="linkFormat" data-url="Transaction/ProcessStatusSearchForSales1.aspx" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_SalesProductionStatusSearch").ToString().Replace("</br>", "<br>"))</span>
+                                                    </td>
+                                                </tr>
+                                                <tr class="tdclass">
+                        <td style="width: 303px">
+                            <button class="underDev" tabindex="-1" onclick="javascript: ShowUnderDevMessage(); return false;">
+                                次工程待ち状況問合せ（工程負荷状況）</button></td></tr><tr class="tdclass">
+                        <td style="width: 303px">
+                                                        <span id="Label63" class="linkFormat" data-url="Transaction/ProcessStatusSearchForFactory.aspx" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_FactoryDailyWorkStatusSearch").ToString().Replace("</br>", "<br>"))</span>
+                                                    </td>
+                                                </tr>
+                                                <tr class="tdclass">
+                        <td style="width: 303px">
+                                                        <span id="Label123" class="linkFormat" data-url="Transaction/PMSReportPrintScreen.aspx" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_ProcessReportsPrint").ToString().Replace("</br>", "<br>"))</span>
+                                                    </td>
+                                                </tr>
+                                                <tr class="tdclass">
+                        <td style="width: 303px"></td>
+                    </tr>
+                    <tr class="tdclass">
+                        <td style="width: 303px">
+                            <button class="underDev" tabindex="-1" onclick="javascript: ShowUnderDevMessage(); return false;">
+                                自材の問合せ（営業・工場用））<br> Jizai Material Search (Sales・Factory)</button></td></tr><tr class="tdclass">
+                        <td style="width: 303px"></td>
+                    </tr>
+
+                    <tr class="tdclass">
+                        <td style="width: 303px">
+
+
+                            <span id="lblProductReport" class="linkFormat" data-url="Report/ProductionReportPrintScreen.aspx" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_ProductionReport").ToString().Replace("</br>", "<br>"))</span></td></tr><tr class="tdclass">
+                        <td style="width: 303px">
+                            <span id="lblReqMaterialScreen" class="linkFormat" data-url="Transaction/RequestedMaterialIntake.aspx" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_MaterialRequestIntakeEntry").ToString().Replace("</br>", "<br>"))</span></td></tr><tr class="tdclass">
+                                        <td style="width: 303px"></td>
+                                    </tr>
+
+                    <tr class="tdclass">
+                        <td style="width: 303px">
+                            
+                            
+
+                            <span id="Label44" class="linkFormat" data-url="Transaction/HikitoriIraiEntryScreen.aspx" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_TransportMaterialRequestEntry").ToString().Replace("</br>", "<br>"))</span></td></tr><tr class="tdclass">
+                        <td style="width: 303px"></td>
+                    </tr>
+
+                    <tr class="tdclass">
+                        <td style="width: 303px">
+                                                        <span id="Label65" class="linkFormat" data-url="Transaction/PrintReportScreen.aspx?ScreenName=SpotNyukaReceivingList" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_SpotNyukaReceivingListReport").ToString().Replace("</br>", "<br>"))</span>
+                                                    </td>
+                                                </tr>
+                                                <tr class="tdclass">
+                        <td style="width: 303px"></td>
+                    </tr>
+
+                    <tr class="tdclass">
+                        <td style="width: 303px">
+                                                        <span id="Label66" class="linkFormat" data-url="Transaction/KurokawaNyukaEntryScreen.aspx" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_JizaiMaterialNyukaEntry").ToString().Replace("</br>", "<br>"))</span>
+                                                    </td>
+                                                </tr>
+                                                <tr class="tdclass">
+                        <td style="width: 303px">
+                            <span id="Label67" class="linkFormat" data-url="Transaction/SpotNyukaEntryEditDelete.aspx" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_SpotMaterialNyukaEntry").ToString().Replace("</br>", "<br>"))</span></td></tr><tr class="tdclass">
+                        <td style="width: 303px"></td>
+                    </tr>
+
+                    <tr class="tdclass">
+                        <td style="width: 303px">
+                                                        <span id="lblActAlloc_ProcessPlan" class="linkFormat" data-url="Transaction/ActAllocationEntryScreen.aspx" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_ProcessPlanEntryActualAllocation").ToString().Replace("</br>", "<br>"))</span>
+                                                    </td>
+                                                </tr>
+                                                <tr class="tdclass">
+                        <td style="width: 303px">
+                            <span id="Label68" class="linkFormat" data-url="Transaction/ProcessPlanReprocessing1.aspx" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_ProcessPlanCuttingReprocessingEntry").ToString().Replace("</br>", "<br>"))</span></td></tr><tr class="tdclass">
+                        <td style="width: 303px">
+                            <span id="lblProcessPlanEditDeleteCuttingReprocessing" class="linkFormat" data-url="Transaction/ProcessPlanReprocessing2.aspx" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_ProcessPlanCuttingReprocessingEdit").ToString().Replace("</br>", "<br>"))</span></td></tr><tr class="tdclass">
+                                        <td style="width: 303px">
+                                                        <span id="Label13" class="linkFormat" data-url="Transaction/PrintReportScreen.aspx?ScreenName=ProcessPlanReport" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_ProcessPlanReportPrintReprint").ToString().Replace("</br>", "<br>"))</span>
+                                                    </td>
+                                                </tr>
+                                                <tr class="tdclass">
+                        <td style="width: 303px"></td>
+                    </tr>
+
+                    <tr class="tdclass">
+                        <td style="width: 303px">
+                                                        <span id="Label22" class="linkFormat" data-url="Transaction/NifudaPrintScreen.aspx" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_MultipleProductNifudaGenerationProduct").ToString().Replace("</br>", "<br>"))</span>
+                                                    </td>
+                                                </tr>
+                                                <tr class="tdclass">
+                        <td style="width: 303px">
+                            <span id="lblNifudaKW" class="linkFormat" data-url="Transaction/KurokawaProductNifudaGenerationScreen.aspx" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_MultipleProductTagGenerationKW").ToString().Replace("</br>", "<br>"))</span></td></tr><tr class="tdclass">
+                        <td style="width: 303px">
+                            
+                            <span id="Label15" class="linkFormat" data-url="Transaction/SpotProductNifudaGenerationScreen.aspx" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_MultipleProductTagGenerationSpot").ToString().Replace("</br>", "<br>"))</span></td></tr><tr class="tdclass">
+                        <td style="width: 303px">
+                            <span id="Label59" class="linkFormat" data-url="Transaction/SpecialProductTagGenration.aspx" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_SpecialProductTagGeneration").ToString().Replace("</br>", "<br>"))</span></td></tr><tr class="tdclass">
+                        <td style="width: 303px">
+                            <span id="Label18" class="linkFormat" data-url="Transaction/NifudaReprintCancelationScreen.aspx" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_ProductShukkaTagReprintDelete").ToString().Replace("</br>", "<br>"))</span></td></tr><tr class="tdclass">
+                        <td style="width: 303px"></td>
+                    </tr>
+
+                    
+
+                    
+                    <tr class="tdclass">
+                        <td style="width: 303px">
+
+                                                        <span id="lblMenu_FactoryProductionPlanEntryEditDeleteFactoryDept" class="linkFormat" data-url="Transaction/FactoryProductionPlan.aspx" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_ManufacturingScheduleEntryEditDelete").ToString().Replace("</br>", "<br>"))</span>
+                                                    </td>
+                                                </tr>
+                                                <tr class="tdclass">
+                        <td style="width: 303px">
+                            <span id="lblMenu_FactoryProductionPlanPrintReprintFactoryDept" class="linkFormat" data-url="Transaction/PrintReportScreen.aspx?ScreenName=factoryProductionPlan" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_ManufacturingSchedulePrintReprint").ToString().Replace("</br>", "<br>"))</span></td></tr><tr class="tdclass">
+                        <td style="width: 303px"></td>
+                    </tr>
+
+                    <tr class="tdclass">
+                        <td style="width: 303px">
+                            <span id="Label2" class="linkFormat" data-url="Transaction/ProdOrderCompletionScreen.aspx" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_ProcessPlanCompletionReuse").ToString().Replace("</br>", "<br>"))</span></td></tr><tr class="tdclass">
+                        <td style="width: 303px"></td>
+                    </tr>
+                    <tr class="tdclass">
+                        <td style="width: 303px">
+
+
+                                                        <span id="lblDeliveryNoteFactory" class="linkFormat" data-url="Transaction/DeliveryNoteFactory.aspx" data-title="aspx">納品書（工場用）（登録・修正・削除・発行・再発行）<br /> Delivery and Acknowledgement Invoice (for factory) (Entry・Edit・Delete・Generation・ReGeneration)</span>
+                                                    </td>
+                                                </tr>
+                                                <tr class="tdclass">
+                        <td style="width: 303px"></td>
+                    </tr>
+
+                    <tr class="tdclass">
+                        <td style="width: 303px">
+                                                        <span id="Label80" class="linkFormat" data-url="Transaction/WIPTensouEntryEditDelete.aspx" data-title="aspx">仕掛製品転送（登録・修正・削除）<br /> WIP Transfer (Entry・Edit・Delete)</span>
+                                                    </td>
+                                                </tr>
+                                                <tr class="tdclass">
+                        <td style="width: 303px">
+                                                        <span id="Label83" class="linkFormat" data-url="Transaction/WIPTensouAcceptanceEntryEditDelete.aspx" data-title="aspx">仕掛仕掛転送受入（登録・取消）<br /> WIP Transfer acceptance (Entry・Cancel)</span>
+                                                    </td>
+                                                </tr>
+                                                <tr class="tdclass">
+                        <td style="width: 303px"></td>
+                    </tr>
+
+                    <tr class="tdclass">
+                        <td style="width: 303px">
+                                                        <span id="lblWIPTensouRequest" class="linkFormat" data-url="Transaction/PrintReportScreen.aspx?ScreenName=WIPTensouRequest" data-title="aspx">仕掛製品転送明細の印刷 <br /> WIP Transfer Request ListPrint</span>
+                                                    </td>
+                                                </tr>
+                                                <tr class="tdclass">
+                        <td style="width: 303px">
+                                                        <span id="lblWIPTensouAcceptance" class="linkFormat" data-url="Transaction/PrintReportScreen.aspx?ScreenName=WIPTensouAcceptance" data-title="aspx">仕掛製品転送受入予定明細の印刷 <br /> WIP TransferAcceptance ListPrint</span>
+                                                    </td>
+                                                </tr>
+                                                <tr class="tdclass">
+                        <td style="width: 303px">
+                                                        <span id="Label75" class="linkFormat" data-url="Transaction/PrintReportScreen.aspx?ScreenName=WipProductProcessReport" data-title="aspx">仕掛製品在庫一覧表 <br /> WIP Product Process Report</span>
+                                                    </td>
+                                                </tr>
+                                                <tr class="tdclass">
+                        <td style="width: 303px"></td>
+                    </tr>
+
+                    
+
+                    <tr class="tdclass">
+                        <td style="width: 303px">
+                                                        <span id="Label50" class="linkFormat" data-url="Transaction/ProductNyuko.aspx" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_ProductNyukoEntry").ToString().Replace("</br>", "<br>"))</span>
+                                                    </td>
+                                                </tr>
+                                                <tr class="tdclass">
+                        <td style="width: 303px">
+                                                        <span id="lblProductShukkoCuttingReprocessing" class="linkFormat" data-url="Transaction/ShukkoScreen.aspx" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_ProductShukkoEntry").ToString().Replace("</br>", "<br>"))</span>
+                                                    </td>
+                                                </tr>
+                                                <tr class="tdclass">
+                        <td style="width: 303px"></td>
+                    </tr>
+                    <tr class="tdclass">
+                        <td style="width: 303px">
+                                                        <span id="lblSpotMaterialNyukoCuttingReprocessing" class="linkFormat" data-url="Transaction/SpotMaterialNyukoEntryEditDeleteScreen.aspx" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_MaterialNyukoEntry").ToString().Replace("</br>", "<br>"))</span>
+                                                    </td>
+                                                </tr>
+                                                <tr class="tdclass">
+                        <td style="width: 303px">
+                                                        <span id="lblMaterialShukkoEntry" class="linkFormat" data-url="Transaction/MaterialShukkoEntryEditDeleteScreen.aspx" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_MaterialShukkoEntry").ToString().Replace("</br>", "<br>"))</span>
+                                                    </td>
+                                                </tr>
+                                                <tr class="tdclass">
+                                        <td style="width: 303px"></td>
+                                    </tr>
+                    
+
+                    <tr class="tdclass">
+                        <td style="width: 303px">
+                                                        <span id="Label124" class="linkFormat" data-url="Transaction/PrintReportScreen.aspx?ScreenName=AllProductStockList" data-title="aspx">製品 ・スポット在庫一覧表の印刷<br />Product・Spot Stock Report</span>
+                                                    </td>
+                                                </tr>
+                                                <tr class="tdclass">
+                        <td style="width: 303px"></td>
+                    </tr>
+                    <tr class="tdclass">
+                        <td class="style3">
+                            <span id="lblMenu_StockVerificationStartFactory" class="linkFormat" data-url="Transaction/ProductStockVerificatonStartScreen.aspx" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_ProductStockVerificationStart").ToString().Replace("</br>", "<br>"))</span></td></tr><tr class="tdclass">
+                        <td class="style3">
+                            <span id="lblMenu_UnVerifiedStockReportFactory" class="linkFormat" data-url="Transaction/PrintReportScreen.aspx?ScreenName=UnverifiedProductStockList" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_UnverifiedProductStockingReport").ToString().Replace("</br>", "<br>"))</span></td></tr><tr class="tdclass">
+                        <td class="style3">
+                            <span id="lblMenu_VerifiedStockReportFactory" class="linkFormat" data-url="Transaction/PrintReportScreen.aspx?ScreenName=VerifiedProductStockList" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_VerifiedProductStockingReport").ToString().Replace("</br>", "<br>"))</span></td></tr><tr class="tdclass">
+                        <td style="width: 303px"></td>
+                    </tr>
+
+                </tbody></table>
+
+            </div>
+            <div id="divMaterial" class="uppercontainer" style="position: relative; display: none; width: 100%; height: 5%; top: 0px; left: 0px;">
+                <table class="MenuTable" border="1" cellpadding="1" cellspacing="1" style="position: relative; width: 100%; height: 22%; top: 0px; left: 0px;">
+
+
+                    <tbody><tr class="tdclass">
+                        <td style="width: 303px"></td>
+                    </tr>
+
+
+
+                    <tr class="tdclass">
+                        <td style="width: 303px"></td>
+                    </tr>
+
+
+                </tbody></table>
+            </div>
+            <div id="divFactoryWorkshop" class="uppercontainer" style="position: relative; display: none; width: 100%; height: 5%; top: 0px; left: 0px;">
+                <table class="MenuTable" border="1" cellpadding="1" cellspacing="1" style="position: relative; width: 100%; height: 22%; top: 0px; left: 0px;">
+
+                    <tbody><tr class="tdclass">
+                        <td style="width: 303px">
+                            <span id="Label28" class="linkFormat" data-url="Transaction/ProcessStatusForFactory.aspx" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_FactoryDailyWorkStatusSearch").ToString().Replace("</br>", "<br>"))</span></td></tr><tr class="tdclass">
+                        <td style="width: 303px">
+                                                        <span id="Label14" class="linkFormat" data-url="Transaction/PMSReportPrintScreen.aspx" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_FactoryDailyProcessReports").ToString().Replace("</br>", "<br>"))</span>
+                                                    </td>
+                                                </tr>
+                                                <tr class="tdclass">
+                        <td style="width: 303px">
+                                                        <span id="lbl_HeatTreatmentEntry" class="linkFormat" data-url="Transaction/HeatTreatmentEntry.aspx" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_HeatTreatmentEntry").ToString().Replace("</br>", "<br>"))</span>
+                                                    </td>
+                                                </tr>
+                                                <tr class="tdclass">
+                        <td style="width: 303px">
+                            <span id="Label2311" class="linkFormat" data-url="Transaction/HeatTreatmentEditDelete.aspx" data-title="aspx">HeatTreatmentEditDelete</span></td></tr>
+                  
+                    <tr class="tdclass">
+                        <td style="width: 303px"></td>
+                    </tr>
+                    <tr class="tdclass">
+                        <td style="width: 303px">
+                            <span id="Label23" class="linkFormat" data-url="Transaction/HikinukiEntryScreen.aspx" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_ColdDrawingHikinukiProcessEntry").ToString().Replace("</br>", "<br>"))</span></td></tr><tr class="tdclass">
+                        <td style="width: 303px">
+                            <span id="Label24" class="linkFormat" data-url="Transaction/HikinukiEditDeleteScreen.aspx" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_ColdDrawingHikinukiProcessEditDelete").ToString().Replace("</br>", "<br>"))</span></td></tr><tr class="tdclass">
+                        <td style="width: 303px"></td>
+                    </tr>
+
+                    <tr class="tdclass">
+                        <td style="width: 303px">
+                                                    <span id="lblWiredrawingEntry" class="linkFormat" data-url="ColdDrawingWireDrawing/ColdDrawingWireDrawingEntry" data-title="PMSCore">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("T_F_工程　引抜（伸線）（登録）</br>_Cold Drawing  (WIRE DRAWING)  Process (Entry)").ToString().Replace("</br>", "<br>"))</span>
+                                                </td>
+                                            </tr>
+                                            <tr class="tdclass">
+                        <td style="width: 303px">
+                                                    <span id="lblWiredrawingEditdelete" class="linkFormat" data-url="ColdDrawingWireDrawing/ColdDrawingWireDrawingEditDelete" data-title="PMSCore">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("T_F_工程　引抜（伸線）（修正・削除）</br>_Cold Drawing  (WIRE DRAWING)  Process (Edit・Delete)").ToString().Replace("</br>", "<br>"))</span>
+                                                </td>
+                                            </tr>
+                                            <tr class="tdclass">
+                        <td style="width: 303px"></td>
+                    </tr>
+
+                    <tr class="tdclass">
+                        <td style="width: 303px">
+                                                    <span id="Label25" class="linkFormat" data-url="Straightening/StraighteningEntry" data-title="PMSCore">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_StraighteningKyouseiProcessEntry").ToString().Replace("</br>", "<br>"))</span>
+                                                </td>
+                                            </tr>
+                            <tr class="tdclass">
+                        <td style="width: 303px">
+                                                    <span id="Label27" class="linkFormat" data-url="Straightening/StraighteningEditDelete" data-title="PMSCore">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_StraighteningKyouseiProcessEditDelete").ToString().Replace("</br>", "<br>"))</span>
+                                                    </td>
+                                                </tr>
+                                                <tr class="tdclass">
+                        <td style="width: 303px"></td>
+                    </tr>
+
+                                            <tr class="tdclass">
+                                                <td style="width: 303px">
+                                                    <span id="lblStraighteningEntry2" class="linkFormat" data-url="Straightening2/StraighteningEntry2" data-title="PMSCore">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_StraighteningKyouseiProcessEntry2").ToString().Replace("</br>", "<br>"))</span>
+                                                </td>
+                                            </tr>
+                                            <tr class="tdclass">
+                                                <td style="width: 303px">
+                                                    <span id="lblStraighteningEditDelete2" class="linkFormat" data-url="Straightening2/StraighteningEditDelete2" data-title="PMSCore">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_StraighteningKyouseiProcessEditDelete2").ToString().Replace("</br>", "<br>"))</span>
+                                                </td>
+                                            </tr>
+                                            <tr class="tdclass">
+                                                <td style="width: 303px"></td>
+                                            </tr>
+                    <tr class="tdclass">
+                        <td style="width: 303px"></td>
+                    </tr>
+                    <tr class="tdclass">
+                        <td style="width: 303px">
+                                                        <span id="Label61" class="linkFormat" data-url="Chamffer/ChamfferEntry" data-title="PMSCore">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_ChamferEntry").ToString().Replace("</br>", "<br>"))</span>
+                                                    </td>
+                                                </tr>
+                                                <tr class="tdclass">
+                        <td style="width: 303px">
+                                                    <span id="Label70" class="linkFormat" data-url="Chamffer/ChamfferEditDelete" data-title="PMSCore">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_ChamferEditDelete").ToString().Replace("</br>", "<br>"))</span>
+                                                    </td>
+                                                </tr>
+                                                <tr class="tdclass">
+                        <td style="width: 303px"></td>
+                    </tr>
+                    <tr class="tdclass">
+                        <td style="width: 303px">
+                                                        <span id="Label64" class="linkFormat" data-url="Transaction/ECEntryScreen.aspx" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_ECEntry").ToString().Replace("</br>", "<br>"))</span>
+                                                    </td>
+                                                </tr>
+                                                <tr class="tdclass">
+                        <td style="width: 303px">
+                                                        <span id="Label71" class="linkFormat" data-url="Transaction/ECEditDeleteScreen.aspx" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_ECEditDelete").ToString().Replace("</br>", "<br>"))</span>
+                                                    </td>
+                                                </tr>
+                                                <tr class="tdclass">
+                        <td style="width: 303px"></td>
+                    </tr>
+                    <tr class="tdclass">
+                        <td style="width: 303px">
+                            <span id="Label69" class="linkFormat" data-url="Stampping/StamppingEntry" data-title="PMSCore">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_StampingProcessEntry").ToString().Replace("</br>", "<br>"))</span></td></tr><tr class="tdclass">
+                        <td style="width: 303px">
+                            <span id="Label72" class="linkFormat" data-url="Stampping/StamppingEditDelete" data-title="PMSCore">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_StampingProcessEditDelete").ToString().Replace("</br>", "<br>"))</span></td></tr><tr class="tdclass">
+                        <td style="width: 303px"></td>
+                    </tr>
+                    <tr class="tdclass">
+                        <td style="width: 303px">
+                            <span id="Label76" class="linkFormat" data-url="Transaction/PostHTInspectionEntry.aspx" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_PostHTInspectionEntryEditDelete").ToString().Replace("</br>", "<br>"))</span></td></tr><tr class="tdclass">
+                        <td style="width: 303px">
+                            
+                    </td></tr>
+                    <tr class="tdclass">
+                        <td style="width: 303px">
+                                                    <span id="Label74" class="linkFormat" data-url="Hardness/HardnessEntry" data-title="PMSCore">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_HardnessEntry").ToString().Replace("</br>", "<br>"))</span>
+                                                    </td>
+                                                </tr>
+                                                <tr class="tdclass">
+                        <td style="width: 303px">
+                            <span id="Label78" class="linkFormat" data-url="Hardness/HardnessEditDelete" data-title="PMSCore">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_HardnessEditDelete").ToString().Replace("</br>", "<br>"))</span></td></tr><tr class="tdclass">
+                        <td style="width: 303px">
+                            <span id="Label73" class="linkFormat" data-url="Tensile/TensileEntry" data-title="PMSCore">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_TensileEntryScreen").ToString().Replace("</br>", "<br>"))</span></td></tr><tr class="tdclass">
+                        <td style="width: 303px">
+                                                    <span id="Label77" class="linkFormat" data-url="Tensile/TensileEditDelete" data-title="PMSCore">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_TensileEditDelete").ToString().Replace("</br>", "<br>"))</span>
+                                                </td>
+                                            </tr>
+                                            <tr class="tdclass">
+                        <td style="width: 303px"></td>
+                    </tr>
+
+                    <tr class="tdclass">
+                        <td style="width: 303px">
+                            <button class="underDev" tabindex="-1" onclick="javascript: ShowUnderDevMessage(); return false;">
+                                鋼材試験成績表（登録・修正・削除・発行・再発行）<br> Milsheet  (Entry・Edit・Delete ・ReGenerate)</button></td></tr><tr class="tdclass">
+                        <td style="width: 303px">
+                            <button class="underDev" tabindex="-1" onclick="javascript: ShowUnderDevMessage(); return false;">
+                                メーカーミルシート（登録・修正・削除・再発行）<br> Maker Milsheet  (Entry・Edit・Delete ・ReGenerate)</button></td></tr><tr class="tdclass">
+                                            <td style="width: 303px"></td>
+                                        </tr>
+
+                    <tr class="tdclass">
+                        <td style="width: 303px">
+                            <span id="Label82" class="linkFormat" data-url="Transaction/TensouEntryEditDelete.aspx" data-title="aspx">Tesnou Entry Edit Delete</span></td></tr><tr class="tdclass">
+                        <td style="width: 303px">
+                            <span id="lblWIPTenso" class="linkFormat" data-url="Transaction/WIPTensouEntryEditDelete.aspx" data-title="aspx">WIP Tesnou Entry Edit Delete</span></td></tr><tr class="tdclass">
+                        <td style="width: 303px"></td>
+                    </tr>
+
+                    <tr class="tdclass">
+                        <td style="width: 303px">
+                                                        <span id="Label79" class="linkFormat" data-url="Transaction/HikinukiBarToBar.aspx" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_HikinukiBarToBarEntry").ToString().Replace("</br>", "<br>"))</span>
+                                                    </td>
+                                                </tr>
+                                                <tr class="tdclass">
+                        <td style="width: 303px"></td>
+                    </tr>
+                    <tr class="tdclass">
+                        <td style="width: 303px">
+                                                        <span id="lblHtMenuScreen" class="linkFormat" data-url="HandyTerminal/MenuScreen.aspx" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_HandyTerminalMenuPage_ALL").ToString().Replace("</br>", "<br>"))</span>
+                                                    </td>
+                                                </tr>
+                                                <tr class="tdclass">
+                        <td style="width: 303px">
+                            <button class="underDev" tabindex="-1" onclick="javascript: ShowUnderDevMessage(); return false;">
+                                工場用ハンディーターミナル用メニューに移動<br> Handy Terminal Menu (Factory)</button></td></tr></tbody></table></div><div id="divClouser" class="uppercontainer" style="position: relative; display: none; width: 100%; height: 5%; top: 0px; left: 0px;">
+                <table class="MenuTable" border="1" cellpadding="1" cellspacing="1" style="position: relative; width: 100%; height: 22%; top: 0px; left: 0px;">
+                    
+
+                    <tbody><tr class="tdclass">
+                        <td style="width: 303px">
+                                                        <span id="Label32" class="linkFormat" data-url="Transaction/PostVerificationProductStockReportGenerationScreen.aspx" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_MonthEndProductStockClosureReport").ToString().Replace("</br>", "<br>"))</span>
+                                                    </td>
+                                                </tr>
+                                                <tr class="tdclass">
+                        <td style="width: 303px">
+                                                        <span id="Label46" class="linkFormat" data-url="Transaction/PostVerificationProductStockReportReprintScreen.aspx" data-title="aspx">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_MonthEndProductStockClosureReportRePrint").ToString().Replace("</br>", "<br>"))</span>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+
+                                    </div><div id="divFactoryDaiyouShukka" class="uppercontainer" style="position: relative; display: none; width: 100%; height: 5%; top: 0px; left: 0px;">
+            </div>
+            <div id="divProductStockInquiry" class="uppercontainer" style="position: relative; display: none; width: 100%; height: 5%; top: 0px; left: 0px;">
+            </div>
+            <div id="divStockOrderToStockNyukaToHSKShukka" class="uppercontainer" style="position: relative; display: none; width: 100%; height: 5%; top: 0px; left: 0px;">
+            </div>
+            <div id="divStockOrderToStockNyukaToActualMatlSpec" class="uppercontainer" style="position: relative; display: none; width: 100%; height: 5%; top: 0px; left: 0px;">
+            </div>
+            <div id="divStockOrderToStockNyukaChoksuo" class="uppercontainer" style="position: relative; display: none; width: 100%; height: 5%; top: 0px; left: 0px;">
+            </div>
+           
+</div>
+                        </td>
+                    </tr>
+                   
+                </tbody>
+                </table>
+                 
+           </div>
+         @*  <table style="width: 800px;margin-top:5px" cellspacing="0" cellpadding="0">
+                  <tr>
+                      <td align="right" style="border-style:none;"> 
+                          <div id="menuFooter">
+                <div id="DivCloseButton" style="height: 57px">
+                    <div id="divLblClose">
+                        <label id="lblClose" class="labelClass" style="color:white">@LocalizationServices.GetLocalizedHtmlString("lbl_CloseWindow")</label>
+
+                    </div><div id="divBtnClose">
+                        <input type="button" value="@LocalizationServices.GetLocalizedHtmlString("btn_Close_L")" ID="btnClose"
+                           style="color:black" TabIndex="16" class="_functionButtons labelClass" />
+                    </div>
+                </div>
+            </div>
+                          
+                      </td>
+
+                  </tr>
+                  </table>*@
+           <input type="hidden" id="fieldID" />
+           <input type="hidden" id="authorizeduser" name="authorizeduser" value="@user" />
+            <input type="hidden" id="aspxurl" name="aspxurl" value="@aspxurl"/>
+            <input type="hidden" id="coreurl" name="coreurl" value="@coreurl" />
+            <div id="divErrorMessages" class="Hidden">
+
+                <label id="lblErrorMessageE_systemexception" class="Hidden">
+                    <span ID="LiteralExceptionOccured">@LocalizationServices.GetLocalizedHtmlString("valMsg_COM_SystemException")</span>
+                </label>
+              
+            </div>
+            
+           
+</form>
+</body>

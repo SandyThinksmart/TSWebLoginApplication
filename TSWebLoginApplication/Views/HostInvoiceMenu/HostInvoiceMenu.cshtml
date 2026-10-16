@@ -1,0 +1,147 @@
+﻿@using TSWebLoginApplication.Domain.Resources
+@inject LocalizationServices LocalizationServices
+@{
+    ViewData["Title"] = @LocalizationServices.GetLocalizedHtmlString("lbl_MenuPage");
+    Layout = "~/Views/Shared/_Layout.cshtml";
+  }
+<style type="text/css">
+    .Hidden {
+        display: none;
+    }
+</style>
+@section Scripts{
+    <script type="text/javascript" src="~/Static/js/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="~/Static/js/common.js"></script>
+    <script type="text/javascript" src="~/Static/js/CommonScript.js"></script>
+    <link href="~/Static/css/Common.css" rel="stylesheet" />
+    <link href="~/Static/css/MenuScreen1.css" rel="stylesheet" />
+    <link href="~/css/masterStyles.css" rel="stylesheet" />
+
+    <script type="text/javascript" src="~/js/HostInvoice.js"></script>
+                  }
+
+
+    <body style="background-color:#f0f0f0;">
+        <form id="form1">
+
+
+            <br />
+            <br />
+
+
+            <div style="width:100%">
+               
+                <div id="menuWrapper" style="background-color:#f0f0f0;"> @*margin: 0 auto; removed*@
+                    <table>
+                        <tr>
+                            <td align="left" style="border-style:none">
+                                <input type="button" style="color:#007bff;border-style:none;font-size:15px;margin-left:-8px;" value="@LocalizationServices.GetLocalizedHtmlString("lbl_MenuPage1")" ID="btnClose"
+                                  TabIndex="16" class="labelClass" />
+                               
+                            </td>
+                        </tr>
+                    </table>
+                    <div id="menuHeader" style="padding-top:7px;text-align:left">
+                       
+                        
+                        <table width="100%" cellpadding="1" cellspacing="1">
+                              <tr>
+                                <td align="left" style="border-style:none">
+                                   @* <label id="lblmainmenu" class="labelClass" style="color:white;margin-left:5px;">@LocalizationServices.GetLocalizedHtmlString("lbl_MenuPage")</label>*@
+                                    <label id="lblworkstation" class="labelClass" style="color:white;margin-left:5px;">@LocalizationServices.GetLocalizedHtmlString("lbl_workstation"):</label>
+                                    <label id="lblusername" class="labelClass" style="color:white;"></label>
+                                </td>
+                                <td align="right" style="border-style:none">
+                                    <input type="button" id="btnsignout" onclick="logout($(this));" style="display:none;font-size:14px;background-color:#336699;border-style:none;width:90px;color:white;" class="labelClass" value="@LocalizationServices.GetLocalizedHtmlString("lbl_SignOut")" />
+                                </td>
+                            </tr>
+
+                        </table>
+
+
+                    </div>
+                    <table style="width: 100%;Margin-top:5px" cellspacing="0" cellpadding="0">
+                        <tbody>
+                            <tr>
+
+                                <td valign="top" colspan="3">
+                                    <div id="pnlSubMenu" class="subMenu">
+
+                                        <div id="divMaster" class="uppercontainer divDefault" style="position: relative; display: block; width: 100%; height: 27%;">
+                                            <table class="MenuTable" cellpadding="1" cellspacing="1" style="position: relative; width: 100%; height: 22%; top: 0px; left: 0px;">
+                                                <tbody>
+                                                    <tr class="tdclass">
+                                                        <td class="style2" style="padding-top:10px;padding-bottom:5px;text-align:center">
+                                                            <span id="lblimportInvoice" data-title="phase1" data-url="InvoiceDataImportBatch/Index" class="linkFormat">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_Import_Invoice").ToString().Replace("</br>", "<br>"))</span>
+                                                        </td>
+                                                    </tr>
+                                                    <tr class="tdclass">
+                                                        <td class="style2" style="padding-top:10px;padding-bottom:5px;text-align:center">
+                                                            <span id="lblfinalInvoiceGenerate" data-title="phase1" data-url="HostInvoicePrintReprint/Index" class="linkFormat">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_Final_Invoice_Generate").ToString().Replace("</br>", "<br>"))</span>
+                                                        </td>
+                                                    </tr>
+                                                    @*<tr class="tdclass">
+                                                        <td class="style3">&nbsp; </td>
+                                                    </tr>*@
+
+                                                    <tr class="tdclass">
+                                                        <td class="style2" style="padding-top:10px;padding-bottom:5px;text-align:center">
+                                                            <span id="lblSpecialInvoicePrint" data-title="phase1" data-url="SpecialInvoicePrintReprint/Index" class="linkFormat">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_Special_Invoice_PrintReprint").ToString().Replace("</br>", "<br>"))</span>
+                                                            @* <span id="lblSpecialInvoicePrint"class="linkFormat">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_Special_Invoice_PrintReprint").ToString().Replace("</br>", "<br>"))</span>*@
+                                                        </td>
+                                                    </tr>
+                                                    <tr class="tdclass">
+                                                        <td class="style2" style="padding-top:10px;padding-bottom:5px;text-align:center">
+                                                            
+                                                        </td>
+                                                    <tr class="tdclass">
+                                                        <td class="style2" style="padding-top:10px;padding-bottom:5px;text-align:center">
+                                                           @*<span id="lblSpecialInvoicePrint"class="linkFormat">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_Special_Invoice_PrintReprint").ToString().Replace("</br>", "<br>"))</span>*@
+                                                            <span id="lblImportFromHost" data-title="phase2" data-url="HostInvoiceBackUpServer/Index" class="linkFormat">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_ImportFromFTP").ToString().Replace("</br>", "<br>"))</span>
+                                                        </td>
+                                                    </tr>
+                                                    <tr class="tdclass" style="display:none">
+                                                        <td class="style2" style="padding-top:10px;padding-bottom:5px;text-align:center">
+                                                            <span id="lblExportFromFTP" data-title="phase2" data-url="ExportFromFTPServer/Index" class="linkFormat">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_ExportFromFTP").ToString().Replace("</br>", "<br>"))</span>
+                                                        </td>
+                                                    </tr>
+                                                <tr class="tdclass" style="display:none">
+                                                        <td class="style2" style="padding-top:10px;padding-bottom:5px;text-align:center">
+
+                                                            <span id="lblEmergencyInvoiceGeneration" data-title="phase2" data-url="InvoiceReport/Index" class="linkFormat">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_Emergency_Invoice_Generation").ToString().Replace("</br>", "<br>"))</span>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+
+                                    </div>
+
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                @*    <table style="width: 700px;margin-top:5px" cellspacing="0" cellpadding="0">
+                        <tr>
+                            <td align="right" style="border-style:none;">
+                                <div id="menuFooter">
+                                    <div id="DivCloseButton" style="height: 57px">
+                                        <div id="divLblClose">
+                                            <label id="lblClose" class="labelClass" style="color:white">@LocalizationServices.GetLocalizedHtmlString("lbl_CloseWindow")</label>
+
+                                        </div><div id="divBtnClose">
+                                            <input type="button" value="@LocalizationServices.GetLocalizedHtmlString("btn_Close_L")" ID="btnClose"
+                                               style="color:black" TabIndex="16" class="_functionButtons labelClass" />
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </td>
+
+                        </tr>
+                    </table>*@
+                </div>
+            </div>
+            
+        </form>
+    </body>

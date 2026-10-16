@@ -1,0 +1,112 @@
+﻿@using TSWebLoginApplication.Domain.Resources
+@inject LocalizationServices LocalizationServices
+@{
+    ViewData["Title"] = @LocalizationServices.GetLocalizedHtmlString("lbl_MenuPage");
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    string user = ViewBag.AuthorizedUser;
+    string cncUrl = ViewBag.cncUrl;
+    string aspxUrl = ViewBag.aspxUrl;
+}
+<style type="text/css">
+    .BorderClass {
+        border-width: 1px;
+        border-style: solid;
+        Border-color: gray;
+        padding: 10px;
+        background-color: #e8edf7
+    }
+
+    .Hidden {
+        display: none;
+    }
+</style>
+
+@section Scripts {
+
+    <script type="text/javascript" src="~/Static/js/jquery-2.1.1.min.js"></script>
+
+    <script type="text/javascript" src="~/Static/js/common.js"></script>
+    <script type="text/javascript" src="~/Static/js/CommonScript.js"></script>
+
+    <link href="~/Static/css/Common.css" rel="stylesheet" />
+
+    <link href="~/css/Common_Styles.css" rel="stylesheet" />
+   <script type="text/javascript" src="~/js/PMSMobilePage.js"></script> 
+    <link href="~/Static/css/MenuScreen1.css" rel="stylesheet" />
+
+}
+
+<body style="background-color:#f0f0f0">
+    <form id="form1">
+        <br /><br />
+        <div style="width:100%">
+
+            <div id="menuWrapper1" style="background-color:#f0f0f0;margin: 0 auto;">
+                <div id="menuHeader" style="padding-top:7px;text-align:left">
+
+                    <table width="100%" cellpadding="1" cellspacing="1">
+                        <tr>
+                           
+                            <td align="left" style="border-style:none;width:60%">
+                                <label id="lblwelcome" class="labelClass" style="color:white;margin-left:5px;">@LocalizationServices.GetLocalizedHtmlString("lbl_workstation"):</label>
+                                <label id="lblusername" class="labelClass" style="color:white;"></label>
+                            </td>
+                            <td align="right" style="border-style:none;width:40%">
+                                <input type="button" id="btnsignout" onclick="logout($(this));" style="font-size:14px;background-color:#336699;border-style:none;width:90px;color:white;" class="labelClass" value="@LocalizationServices.GetLocalizedHtmlString("lbl_SignOut")" />
+                            </td>
+                        </tr>
+
+                    </table>
+
+
+                </div>
+                <table style="width: 100%;Margin-top:5px" cellspacing="0" cellpadding="0">
+                    <tbody>
+                        <tr>
+
+                            <td valign="top" colspan="3">
+                                <div id="pnlSubMenu" class="subMenu">
+
+                                    <div id="divMaster" class="uppercontainer divDefault" style="position: relative; display: block; width: 100%; height: 27%;">
+                                        <table class="MenuTable" cellpadding="1" cellspacing="1" style="position: relative; width: 100%; height: 22%; top: 0px; left: 0px;">
+                                            <tbody>
+                                            
+                                                <tr class="tdclass">
+                                                    <td class="style2 MenuHeight" style="text-align:center">
+
+                                                        <span id="lblMenuFactory" class="linkFormat" onclick="btnMainMMSPMS_Click($(this));">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_Factory").ToString().Replace("</br>", "<br>"))</span>
+
+                                                    </td>
+                                                </tr>
+
+                                                <tr class="tdclass">
+                                                    <td class="style2 MenuHeight" style="text-align:center">
+                                                        @*<input class="labelClass1 MainMenuButtons1" type="button" id="btnCNC" value="@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_CNC").ToString().Replace("</br>", "<br>"))" />*@
+                                                        <span id="lblMenuCNC" class="linkFormat" onclick="btnCNC_Click($(this));">@Html.Raw(@LocalizationServices.GetLocalizedHtmlString("lblMenu_CNC").ToString().Replace("</br>", "<br>"))</span>
+                                                    </td>
+                                                </tr>
+                                               
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                </div>
+
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div id="divErrorMessages" class="Hidden">
+
+            <label id="lblErrorMessageE_systemexception" class="Hidden">
+                <span ID="LiteralExceptionOccured" class="labelClass">@LocalizationServices.GetLocalizedHtmlString("valMsg_COM_SystemException")</span>
+            </label>
+
+        </div>
+        <input type="hidden" id="authorizeduser" name="authorizeduser" value="@user" />
+        <input type="hidden" id="cncUrl" name="cncUrl" value="@cncUrl" />
+        <input type="hidden" id="aspxUrl" name="aspxUrl" value="@aspxUrl" />
+    </form>
+</body>

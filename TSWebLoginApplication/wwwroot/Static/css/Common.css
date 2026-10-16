@@ -1,0 +1,18 @@
+﻿.hidden
+{
+    display: none !important;
+}
+
+.IsNumber
+{
+    text-align: right;
+}
+
+.IsText
+{
+    text-align: left;
+}
+
+ .InActiveIMEMode{
+        ime-mode:disabled;
+}
