@@ -1,5 +1,6 @@
-﻿.hidden
-{
+﻿
+/*Common css file for all the pages in the application.*/
+.hidden {
     display: none !important;
 }
 
