@@ -1,0 +1,15 @@
+[
+  {
+    "Name": "New Profile",
+    "Projects": [
+      {
+        "Path": "TSWebLoginApplication\\TSWebLoginApplication.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "TSWebLoginApplication.API\\TSWebLoginApplication.API.csproj",
+        "Action": "Start"
+      }
+    ]
+  }
+]
